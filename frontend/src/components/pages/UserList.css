@@ -1,7 +1,16 @@
+.userlist-container{
+    display: flex;
+    width: 1160px;
+    flex-direction: column;
+}
 .userlist-header{
     display: flex;
     width: 1100px;
-    height: 150px;        
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 20px; 
+
+
 }
 .userlist-title{
     width: 920px;
@@ -9,6 +18,7 @@
 }
 .title{
     font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
     color: #063970;
 }
 .userlist-button{
@@ -20,7 +30,9 @@
 
 .userlist-card{
     margin-top: 50px;
+    margin-left: 20px;
     display: flex;
     width: 1100px;
-    height: 150px;
+    flex-direction: column;
+
 }

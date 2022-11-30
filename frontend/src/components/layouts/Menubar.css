@@ -1,7 +1,7 @@
 .menubar-container{
     margin-top: 0;
     width: 200px;
-    height: 666px;
+    height: 645px;
     background-color: #063970;
 }
 .menubar-img {
@@ -10,10 +10,6 @@
     margin-bottom: 30px;
     display: flex;
     
-}
-.menubar-itemtop{
-    display: flex;
-    flex-direction: column;
 }
 .menubar-itemtop{
     display: flex;
