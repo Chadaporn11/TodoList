@@ -1,56 +1,41 @@
 .userlist-container{
     display: flex;
-    border: solid red;
-    background-color: #def5f1;
-
-}
-.userlist-menu{
-    display: flex;
-    width: 200px;
-    border: solid yellow;
-
-}
-.userlist-content{
-    display: flex;
-    border: solid blue;
-
+    width: 1160px;
+    border: 1px solid red;
+    flex-direction: column;
 }
 .userlist-header{
     display: flex;
+    width: 1100px;
     height: 150px;
     margin-top: 50px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border: solid green;
+    margin-left: 20px; 
+    border: 1px solid yellow;
 
 
 }
 .userlist-title{
-    width: 930px;
+    width: 920px;
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    border: solid palevioletred;
-
 }
 .title{
     font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
     color: #063970;
 }
 .userlist-button{
-    width: 150px;
+    width: 180px;
     display: flex;
-    justify-content: start;
+    justify-content: end;
     align-items: end;
-    border: solid orange;
-
 }
 
 .userlist-card{
     margin-top: 50px;
+    margin-left: 20px;
     display: flex;
-    align-items: center;
     width: 1100px;
-    height: 80px;
-    background-color: black;
-    
+    border: 1px solid blue;
+    flex-direction: column;
+
 }
