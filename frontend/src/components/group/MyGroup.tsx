@@ -1,4 +1,6 @@
 import React from 'react';
+import CardMyGroup from '../cards/CardMyGroup';
+import './MyGroup.css';
 //ant design
 import { Form, Input, Row, Button, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
@@ -6,7 +8,7 @@ import { SearchOutlined } from '@ant-design/icons';
 const MyGroup = () => {
     return (
         <div className='mygroup-container'>
-            <Row>
+            <div className="mygroup-search">
                 <Form>
                     <Form.Item>
                         <Input
@@ -19,14 +21,16 @@ const MyGroup = () => {
                         />
 
                     </Form.Item>
-
                 </Form>
+            </div>
+            <div className="mygroup-content">
+                <h2 className='title'>My Group</h2>
+            </div>
+            <div className="mygroup-card">
+                    <CardMyGroup />
+            </div>
 
 
-            </Row>
-            <Row>
-
-            </Row>
 
 
         </div>
