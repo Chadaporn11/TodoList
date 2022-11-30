@@ -1,0 +1,5 @@
+id,username,password,phone_number,address,img,userCreateId
+10,handsomeMan,$2b$10$r8QcFJ0yV0OnQKIwm2.FGedZO9K48Ek0h/JGgys6VEWMvrL25BIjS,1234567890,Handsome place,test,
+12,handsomeMan11,$2b$10$mdrfPnC2gdcLhVNuyXdsMOUGHmaNLaf6WTdnfL.Xcw9SqYTcjQzPC,1234567890,Handsome place,test,
+13,AnanKR,$2b$10$UV1jHD0ty/Or2uGfguWV/OeIxdfG67yh0vC1kclqkK2Rmt2FH7OJW,1234567890,temp,test.img,
+14,anankrrr,$2b$10$hRA33uzfoXx6PV6r75pdi.UfB/imBcQ2P3TM/UUIMSlY2L6GNzk26,1234567890,temp,test.img,
