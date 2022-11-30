@@ -1,26 +1,56 @@
+.userlist-container{
+    display: flex;
+    border: solid red;
+    background-color: #def5f1;
+
+}
+.userlist-menu{
+    display: flex;
+    width: 200px;
+    border: solid yellow;
+
+}
+.userlist-content{
+    display: flex;
+    border: solid blue;
+
+}
 .userlist-header{
     display: flex;
-    width: 1100px;
-    height: 150px;        
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: solid green;
+
+
 }
 .userlist-title{
-    width: 920px;
+    width: 930px;
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid palevioletred;
+
 }
 .title{
     font-size: 35px;
     color: #063970;
 }
 .userlist-button{
-    width: 180px;
+    width: 150px;
     display: flex;
-    justify-content: end;
+    justify-content: start;
     align-items: end;
+    border: solid orange;
+
 }
 
 .userlist-card{
     margin-top: 50px;
     display: flex;
+    align-items: center;
     width: 1100px;
-    height: 150px;
+    height: 80px;
+    background-color: black;
+    
 }
