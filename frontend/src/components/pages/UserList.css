@@ -1,0 +1,26 @@
+.userlist-header{
+    display: flex;
+    width: 1100px;
+    height: 150px;        
+}
+.userlist-title{
+    width: 920px;
+    display: flex;
+}
+.title{
+    font-size: 35px;
+    color: #063970;
+}
+.userlist-button{
+    width: 180px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.userlist-card{
+    margin-top: 50px;
+    display: flex;
+    width: 1100px;
+    height: 150px;
+}
