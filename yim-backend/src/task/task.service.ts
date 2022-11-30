@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GroupService } from 'src/group/group.service';
@@ -36,6 +37,14 @@ export class TaskService {
     const data = this.taskRepo.findOneByOrFail({ id });
     return data;
   }
+
+  /*async findTaskByGid(id: number): Promise<any>{
+    return await this.taskRepo
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task.user','user')
+      .leftJoinAndSelect('task.group','group')
+      .where()
+  }*/
 
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     const data = await this.findOne(id);

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -38,6 +39,7 @@ export class UsersService {
   async findUserCreated(id: number) {
     return await this.userRepo
       .createQueryBuilder('user')
+      .leftJoinAndSelect('user.userCreate', 'userCreate')
       .where('user.userCreateId = :userId', { userId: id })
       .getMany();
   }

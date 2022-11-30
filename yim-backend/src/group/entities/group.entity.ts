@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Task } from 'src/task/entities/task.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
