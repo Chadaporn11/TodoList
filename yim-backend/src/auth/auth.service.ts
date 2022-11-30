@@ -23,6 +23,7 @@ export class AuthService {
     const playload = { username: user.username, sub: user.id };
     return {
       msg: 'login complete',
+      userId: user.id,
       access_token: this.jwtService.sign(playload),
     }
   }

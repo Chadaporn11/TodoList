@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -27,7 +28,7 @@ export class GroupController {
 
   @Get('getGroup/:id')
   findOne(@Param('id') id: string) {
-    return this.groupService.findOne(+id);
+    return this.groupService.findGroupByUserId(+id);
   }
 
   @Patch('updataGroup/:id')

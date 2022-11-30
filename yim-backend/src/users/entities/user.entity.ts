@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Group } from 'src/group/entities/group.entity';
 import { Task } from 'src/task/entities/task.entity';
 import {

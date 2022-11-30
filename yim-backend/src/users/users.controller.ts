@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -28,6 +29,11 @@ export class UsersController {
   @Get('getUser/:id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
+  }
+
+  @Get('getCreateUser/:id')
+  findUserCreate(@Param('id') id: string) {
+    return this.usersService.findUserCreated(+id);
   }
 
   @Patch('updateUser/:id')

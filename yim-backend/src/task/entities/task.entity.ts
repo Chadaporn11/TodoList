@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Group } from 'src/group/entities/group.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';

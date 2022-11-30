@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersService } from 'src/users/users.service';
@@ -28,9 +29,10 @@ export class GroupService {
   }
 
   //search group by UserID
-  findOne(id: number) {
+  findGroupByUserId(id: number) {
     return this.groupRepo
       .createQueryBuilder('group')
+      .leftJoinAndSelect('group.user', 'user')
       .where('group.userId = :userId', { userId: id })
       .getMany();
   }
