@@ -1,0 +1,25 @@
+
+.header {
+    margin-top: 3%;
+    margin-left: 3%;
+    position: left;
+}
+
+.container{
+    width: 1300px;
+    height: 100vh;
+  
+}
+
+
+input {
+    margin-top: 5%;
+    position: relative;
+    display: inline-block;
+    font-size: 10px;
+    box-sizing: border-box;
+    transition: .5%;
+}
+
+
+
