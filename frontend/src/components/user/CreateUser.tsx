@@ -1,8 +1,15 @@
-import react from 'react';
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import './CreateUser.css';
-import { LockOutlined, PhoneOutlined, PlusOutlined, PushpinOutlined, LoadingOutlined } from '@ant-design/icons';
-import { UserAddOutlined } from '@ant-design/icons';
+//models type
+import { userInterface } from '../../models/IUser';
+//ant design
+import { 
+    LockOutlined, 
+    PhoneOutlined, 
+    UserAddOutlined, 
+    PushpinOutlined, 
+    LoadingOutlined 
+} from '@ant-design/icons';
 import {
     Form,
     Input,
@@ -10,12 +17,9 @@ import {
     Upload,
     message,
 } from 'antd';
-
 import type { UploadChangeParam } from 'antd/es/upload';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { Col, Row } from 'antd';
-
-
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -36,12 +40,13 @@ const beforeUpload = (file: RcFile) => {
 };
 
 
-function CreateUser() {
+const CreateUser = () => {
 
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
+    const [user, setUser] = useState<Partial<userInterface>>({});
 
-    const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+    const handleChangeImage: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
             setLoading(true);
             return;
@@ -62,6 +67,11 @@ function CreateUser() {
         </div>
     );
 
+    const handleInputChange= (event: React.ChangeEvent<{ id?: string; value: any }>) => {
+        console.log(event.target.value)
+
+    }
+
     return (
         <div className='container'>
 
@@ -81,46 +91,79 @@ function CreateUser() {
                 >
                     <Form.Item>
                         <Upload
-                            name="avatar"
+                            name="profile"
+                            id='profile'
+
                             listType="picture-card"
                             className="avatar-uploader"
                             showUploadList={false}
                             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                             beforeUpload={beforeUpload}
-                            onChange={handleChange}
+                            onChange={handleChangeImage}
                         >
                             {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                         </Upload>
                     </Form.Item>
 
-                    <Form.Item label={<UserAddOutlined />} id="use" name="username"
-                    >
-                        <Input placeholder="user name" />
+                    <Form.Item label={<UserAddOutlined />} id="use" name="username">
+                        <Input 
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="user name"
+                        value={user.username}
+                        onChange={handleInputChange}
+                         />
                     </Form.Item>
 
-                    <Form.Item label={<PhoneOutlined />} name="phonenumber"
-                    >
-                        <Input placeholder="Phone Number" />
+                    <Form.Item label={<PhoneOutlined />} name="phonenumber">
+                        <Input
+                        type="text"
+                        name="phonenumber"
+                        id="phonenumber" 
+                        value={user.phonenumber}
+                        onChange={handleInputChange}
+
+                        placeholder="Phone Number" />
                     </Form.Item>
 
-                    <Form.Item label={<PushpinOutlined />} name="address"
-                    >
-                        <Input placeholder="Address" />
+                    <Form.Item label={<PushpinOutlined />} name="address">
+                        <Input 
+                        type="text"
+                        name="emailaddress"
+                        id="emailaddress" 
+                        value={user.emailaddress}
+                        onChange={handleInputChange}
+
+                        placeholder="Email Address" />
                     </Form.Item>
 
                     <Form.Item
                         label={<LockOutlined />}
                         name="password"
                     >
-                        <Input.Password placeholder="password" />
+                        <Input.Password 
+                        type="text"
+                        name="password"
+                        id="password" 
+                        value={user.password}
+                        onChange={handleInputChange}
+
+                        placeholder="password" />
                     </Form.Item>
 
                     <Form.Item
                         label={<LockOutlined />}
-                        name="password"
-
+                        name="confirmpassword"
                     >
-                        <Input.Password placeholder="confirm password" />
+                        <Input.Password
+                        type="text"
+                        name="confirmpassword"
+                        id="confirmpassword" 
+                        value={user.password} 
+                        onChange={handleInputChange}
+
+                        placeholder="confirmpassword" />
                     </Form.Item>
 
 
@@ -149,5 +192,3 @@ function CreateUser() {
 
 
 export default CreateUser;
-
-{/* <UserAddOutlined /> */ }

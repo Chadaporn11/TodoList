@@ -1,16 +1,12 @@
-import react from 'react';
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import './ItemList.css'
-import { Button, Card } from 'antd';
+//ant design
+import { Col, Row, Card } from 'antd';
 import { CheckOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Col, Row } from 'antd';
 
-function ItemList() {
-
+const ItemList = () => {
 
     return (
-
-
         <Card style={{ width: 800 }}>
             <Card style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%",}}>
                 <Row>
@@ -50,7 +46,5 @@ function ItemList() {
     );
 }
 
-
 export default ItemList;
 
-{/* <UserAddOutlined /> */ }

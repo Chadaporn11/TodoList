@@ -1,12 +1,10 @@
-import react from 'react';
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import './CreateGroup.css';
-import { Button, Card, Col, Row } from 'antd';
+//ant design
+import { Button, Col, Row } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
 
-
-
-function CreateGroup() {
+const CreateGroup = () => {
 
 
     return (
@@ -41,7 +39,4 @@ function CreateGroup() {
     );
 }
 
-
 export default CreateGroup;
-
-{/* <UserAddOutlined /> */ }

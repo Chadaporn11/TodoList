@@ -1,8 +1,8 @@
 import React from 'react';
 import './CardUserList.css';
-import { Card, Row, Col } from 'antd';
+//ant design
+import { Card, Avatar } from 'antd';
 import { UserOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
 
 
 const CardUserList = () => {

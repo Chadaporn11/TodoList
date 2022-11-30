@@ -1,15 +1,18 @@
-import react from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './SignIn.css'
-import { Button, Form, Input } from "antd";
-import type { SizeType } from 'antd/es/config-provider/SizeContext';
+
+//layouts
 import Menu from '../layouts/Menubar'
 
-function SignIn() {
+//ant design
+import { Button, Form, Input } from "antd";
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
+
+const SignIn = () => {
     const [size, setSize] = useState<SizeType>('large');
     const [form] = Form.useForm();
+
     return (
-        
 
         <div className='Auth-form-container'>
             <div className='Auth-form-content'>

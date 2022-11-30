@@ -1,12 +1,12 @@
-import react from 'react';
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import './TodoList.css';
-import { Button, Card, Col, Row } from 'antd';
 import ItemList from './ItemList';
+//ant design
+import { Button, Col, Row } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
 
 
-function TodoList() {
+const TodoList = () => {
 
 
     return (

@@ -6,7 +6,7 @@
 }
 
 .container{
-    width: 1300px;
+    width: 1160px;
     height: 100vh;
   
 }
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1300px;
+    width: 1160px;
     height: 70vh;
     text-align: center;
 }

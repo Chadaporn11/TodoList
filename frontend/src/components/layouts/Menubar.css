@@ -1,18 +1,20 @@
-.menubar-container{
+.menubar-container {
     margin-top: 0;
     width: 200px;
     height: 100vh;
     background-color: #063970;
 }
+
 .menubar-img {
-    margin-left: 35px;
     margin-top: 30px;
     margin-bottom: 30px;
     display: flex;
-    
-}
-.menubar-itemtop{
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
+
 }
 
+.menubar-itemtop {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
