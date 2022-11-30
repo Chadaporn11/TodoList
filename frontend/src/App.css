@@ -4,8 +4,6 @@
     
 }
 
-.container{
-    display: flex;
-    flex-direction: row;
-    background-color: #DEF5E5;
+body{
+    background-color: aliceblue;
 }
