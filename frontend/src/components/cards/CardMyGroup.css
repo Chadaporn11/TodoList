@@ -1,0 +1,33 @@
+.card{
+    margin-right: 20px;
+}
+.addcard{
+    margin-right: 20px;
+}
+.card-action{
+    margin-right: 20px;
+    display: flex;
+    width: 150px;
+    justify-content: end;
+    align-items: flex-start;
+}
+.card-name{
+    margin-top: 20px;
+    display: flex;
+    width: 150px;
+    justify-content: start;
+}
+.card-title{
+    display: flex;
+    width: 150px;
+    justify-content: start;
+    font-size: 13px;
+    color: grey;
+    font-weight:400;
+}
+.card-action-btn{
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
