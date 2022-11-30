@@ -1,0 +1,43 @@
+.addgroup-container{
+    display: flex;
+    width: 1160px;
+    flex-direction: column;
+}
+.addgroup-btn-back{
+    margin-left: 40px;
+    margin-right: 90px;
+    display: flex;
+    width: 1030px;
+    height: 90px;
+    justify-content: end;
+    align-items: end;
+
+}
+.addgroup-header{
+    margin-top: 20px;
+    margin-left: 40px;
+    height: 60px;
+    width: 1120px;
+
+    display: flex;
+}
+.title{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #063970;
+}
+.addgroup-content{
+    margin-left: 40px;
+    display: flex;
+    width: 1120px;
+    flex-direction: row;
+}
+.addgroup-content-input{
+    display: flex;
+    width: 900px;
+}
+
+.addgroup-content-btn{
+    display: flex;
+    width: 100px;
+}
