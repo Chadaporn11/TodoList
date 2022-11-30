@@ -1,5 +1,6 @@
 import React from 'react';
 import './Menubar.css';
+import { Link } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined, AntDesignOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -25,8 +26,8 @@ function getItem(
 }
 
 const itemstop: MenuProps['items'] = [
-    getItem('My ToDo List', 'mytodolist', <PieChartOutlined />),
-    getItem('User', 'user', <UserOutlined />),
+    getItem(<Link to='todolist'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
+    getItem(<Link to='create-user'>User</Link>, 'user', <UserOutlined />),
 ];
 const itemsend: MenuProps['items'] = [
     getItem('Log out', 'logout', <LoginOutlined />),
