@@ -25,7 +25,7 @@ function getItem(
 
 const itemstop: MenuProps['items'] = [
     getItem(<Link to='/my-group'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
-    getItem(<Link to='/create-user'>User</Link>, 'user', <UserOutlined />),
+    getItem(<Link to='/'>User</Link>, 'user', <UserOutlined />),
 ];
 const itemsend: MenuProps['items'] = [
     getItem('Log out', 'logout', <LoginOutlined />),

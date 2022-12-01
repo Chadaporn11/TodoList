@@ -1,7 +1,8 @@
 export interface userInterface {
     username: string,
-    phonenumber: string,
-    emailaddress: string,
     password: string,
+    phone_number: string,
+    address: string,
     confirmpassword: string,
+    img: string,
 }

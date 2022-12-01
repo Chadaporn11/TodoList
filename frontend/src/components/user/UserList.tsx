@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 //pages
 import CardUserList from '../cards/CardUserList';
 //ant design
-import { Col, Row, Button, Card } from 'antd';
-import { UserOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { Row, Button } from 'antd';
+import {  PlusOutlined } from '@ant-design/icons';
 
 const UserList = () => {
     return (

@@ -1,14 +1,14 @@
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import './CreateUser.css';
 //models type
 import { userInterface } from '../../models/IUser';
 //ant design
-import { 
-    LockOutlined, 
-    PhoneOutlined, 
-    UserAddOutlined, 
-    PushpinOutlined, 
-    LoadingOutlined 
+import {
+    LockOutlined,
+    PhoneOutlined,
+    UserAddOutlined,
+    PushpinOutlined,
+    LoadingOutlined
 } from '@ant-design/icons';
 import {
     Form,
@@ -67,10 +67,27 @@ const CreateUser = () => {
         </div>
     );
 
-    const handleInputChange= (event: React.ChangeEvent<{ id?: string; value: any }>) => {
-        console.log(event.target.value)
+    const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
+        const name = event.target.id as keyof typeof user;
+        const { value } = event.target;
+        setUser({
+            ...user,
+            [name]: value,
+        });
+    }
+    const handleSubmit = () => {
+        let data = {
+            username: user.username,
+            password: user.password,
+            phone_number: user.phone_number,
+            address: user.address,
+            img: imageUrl,
+        }
+        console.log(data)
+        
 
     }
+    console.log(user)
 
     return (
         <div className='container'>
@@ -91,9 +108,8 @@ const CreateUser = () => {
                 >
                     <Form.Item>
                         <Upload
-                            name="profile"
-                            id='profile'
-
+                            name="img"
+                            id='img'
                             listType="picture-card"
                             className="avatar-uploader"
                             showUploadList={false}
@@ -106,50 +122,50 @@ const CreateUser = () => {
                     </Form.Item>
 
                     <Form.Item label={<UserAddOutlined />} id="use" name="username">
-                        <Input 
-                        type="text"
-                        name="username"
-                        id="username"
-                        placeholder="user name"
-                        value={user.username}
-                        onChange={handleInputChange}
-                         />
+                        <Input
+                            type="text"
+                            name="username"
+                            id="username"
+                            placeholder="user name"
+                            value={user.username}
+                            onChange={handleInputChange}
+                        />
                     </Form.Item>
 
                     <Form.Item label={<PhoneOutlined />} name="phonenumber">
                         <Input
-                        type="text"
-                        name="phonenumber"
-                        id="phonenumber" 
-                        value={user.phonenumber}
-                        onChange={handleInputChange}
+                            type="text"
+                            name="phone_number"
+                            id="phone_number"
+                            value={user.phone_number}
+                            onChange={handleInputChange}
 
-                        placeholder="Phone Number" />
+                            placeholder="Phone Number" />
                     </Form.Item>
 
                     <Form.Item label={<PushpinOutlined />} name="address">
-                        <Input 
-                        type="text"
-                        name="emailaddress"
-                        id="emailaddress" 
-                        value={user.emailaddress}
-                        onChange={handleInputChange}
+                        <Input
+                            type="text"
+                            name="address"
+                            id="address"
+                            value={user.address}
+                            onChange={handleInputChange}
 
-                        placeholder="Email Address" />
+                            placeholder="Email Address" />
                     </Form.Item>
 
                     <Form.Item
                         label={<LockOutlined />}
                         name="password"
                     >
-                        <Input.Password 
-                        type="text"
-                        name="password"
-                        id="password" 
-                        value={user.password}
-                        onChange={handleInputChange}
+                        <Input.Password
+                            type="text"
+                            name="password"
+                            id="password"
+                            value={user.password}
+                            onChange={handleInputChange}
 
-                        placeholder="password" />
+                            placeholder="password" />
                     </Form.Item>
 
                     <Form.Item
@@ -157,13 +173,13 @@ const CreateUser = () => {
                         name="confirmpassword"
                     >
                         <Input.Password
-                        type="text"
-                        name="confirmpassword"
-                        id="confirmpassword" 
-                        value={user.password} 
-                        onChange={handleInputChange}
+                            type="text"
+                            name="confirmpassword"
+                            id="confirmpassword"
+                            value={user.password}
+                            onChange={handleInputChange}
 
-                        placeholder="confirmpassword" />
+                            placeholder="confirmpassword" />
                     </Form.Item>
 
 
@@ -175,7 +191,10 @@ const CreateUser = () => {
                                 </Button>
                             </div>
                             <div className='button-submit'>
-                                <Button type="primary" htmlType="submit">
+                                <Button
+                                    onClick={handleSubmit}
+                                    type="primary"
+                                    htmlType="submit">
                                     Submit
                                 </Button>
                             </div>

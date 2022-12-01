@@ -1,5 +1,6 @@
 .card-img{
     width: 70px;
+
 }
 .card-name{
     display: flex;
@@ -12,10 +13,12 @@
     display: flex;
     justify-content: start;
     width: 500px;
+
     
 }
 .card-action{
     width: 100px;
     display: flex;
     justify-content: space-evenly;
+
 }
