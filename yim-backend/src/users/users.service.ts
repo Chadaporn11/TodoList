@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UseGuards } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
+
 
 @Injectable()
 export class UsersService {
@@ -40,7 +42,7 @@ export class UsersService {
     return await this.userRepo
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.userCreate', 'userCreate')
-      .where('user.userCreateId = :userId', { userId: id })
+      .groupBy()
       .getOne();
   }
 
