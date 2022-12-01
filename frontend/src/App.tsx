@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter,
   Routes, // instead of "Switch"
@@ -7,7 +7,7 @@ import {
 import './App.css';
 //pages
 import UserList from './components/user/UserList';
-import Menu from './components/layouts/Menubar';
+import Menubar from './components/layouts/Menubar';
 import SignIn from './components/signin/SignIn';
 import CreateUser from './components/user/CreateUser';
 import TodoList from './components/dolist/TodoList';
@@ -17,10 +17,23 @@ import AddGroup from './components/group/AddGroup'
 
 function App() {
 
+  const [Msg,setMsg] = React.useState("");
+
+  useEffect(() => {
+    const msg = localStorage.getItem("msg");
+    if (msg === "login complete") {
+      setMsg(msg)
+    }
+  },[]);
+
+  if (!Msg) {
+    return <SignIn></SignIn>
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <BrowserRouter>
-        <Menu></Menu>
+        <Menubar/>
         <Routes>
 
           <Route path="/user-list" element={<UserList />} />

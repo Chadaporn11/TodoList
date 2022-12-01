@@ -6,6 +6,7 @@ import { Form, Input, Row, Button, Card } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 const MyGroup = () => {
+    
     return (
         <div className='mygroup-container'>
             <div className="mygroup-search">

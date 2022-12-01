@@ -62,7 +62,7 @@ const AddGroup = () => {
         <div className='addgroup-container'>
             <Row>
                 <div className='addgroup-btn-back'>
-                    <Link to='/my-group'>
+                    <Link to='/'>
                         <LeftCircleFilled style={{ fontSize: '40px', color: '#08c' }} />
                     </Link>
                 </div>

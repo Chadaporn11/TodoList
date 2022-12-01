@@ -6,12 +6,15 @@ import { Card, Avatar } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const CardMyGroup = () => {
+    const handleRemove = () => {
+        console.log('remove')
+    }
     return (
         <>
             <div className='card'>
                 <Card bodyStyle={{ width: '180px', height: '120px', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                     <div className='card-action'>
-                        <DeleteOutlined />
+                        <DeleteOutlined onClick={handleRemove}/>
                     </div>
                     <div className='card-name'>
                         <h3>Name</h3>
