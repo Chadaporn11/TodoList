@@ -18,9 +18,9 @@ export class TaskService {
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { name, group, user } = createTaskDto;
-    const findUser = await this.userService.findOne(user.id);
-    const findGroup = await this.groupService.findGroup(group.id);
+    const { name, groupId, userId } = createTaskDto;
+    const findUser = await this.userService.findOne(userId);
+    const findGroup = await this.groupService.findGroup(groupId);
     const dataInsert = await this.taskRepo.create({
       name: name,
       user: findUser,
@@ -39,11 +39,11 @@ export class TaskService {
   }
 
   async findTaskByGid(id: number): Promise<any>{
-    return await this.taskRepo
-      .createQueryBuilder('task')
-      .leftJoinAndSelect('task.group','group')
-      .where('task.groupId = :groupId',{groupId: id})
-      .getMany();
+    const result =  await this.taskRepo
+    .createQueryBuilder('task')
+    .where('task.groupId = :groupId',{groupId: id})
+    .getManyAndCount();
+    return { data : result[0], row: result[1]}
   }
 
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {

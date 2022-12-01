@@ -64,7 +64,10 @@ export class UsersService {
       const user = await this.findOne(id);
       const { username, password, phone_number, address, img } = updateUserDto;
       if (username) user.username = username;
-      if (password) user.password = password;
+      if (password) {
+        const hashPassword = await bcrypt.hashSync(password, 10);
+        user.password = hashPassword;
+      }
       if (phone_number) user.phone_number = phone_number;
       if (address) user.address = address;
       if (img) user.img = img;

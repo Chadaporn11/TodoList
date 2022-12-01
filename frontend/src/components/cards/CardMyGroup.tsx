@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom';
 import { Card, Avatar, List } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { GroupInterface } from '../../models/IGroup';
-import { getgroup } from '../functions/group';
+import { getgroup, listbyId } from '../functions/group';
 const CardMyGroup = () => {
     const [Group, setGroup] = React.useState<GroupInterface[]>([]);
 
     const handleRemove = () => {
         console.log('remove')
     }
-
+    const userId = localStorage.getItem('user');
     useEffect(() => {
-        getgroup()
+        listbyId(userId)
         .then((response) => response.json())
         .then((res) => {
             setGroup(res)
-            console.log(res)
+            console.log("group res",res)
             if (res) {
                 setGroup(res);
             }
