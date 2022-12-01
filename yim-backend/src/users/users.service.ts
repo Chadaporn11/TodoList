@@ -42,7 +42,7 @@ export class UsersService {
     return await this.userRepo
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.userCreate', 'userCreate')
-      .groupBy()
+      .where('user.userCreateId = :userCreateId', { userCreateId : id})
       .getOne();
   }
 

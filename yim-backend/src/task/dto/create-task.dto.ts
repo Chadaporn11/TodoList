@@ -6,6 +6,8 @@ export class CreateTaskDto {
   id: number;
   @IsNotEmpty()
   name: string;
+  @IsNotEmpty()
+  todo: string
   user: User;
   group: Group;
 }
