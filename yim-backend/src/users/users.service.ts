@@ -48,6 +48,7 @@ export class UsersService {
 
   async findOne(id: number): Promise<User> {
     try {
+      console.log(id+"find one mt.")
       return await this.userRepo.findOneByOrFail({ id });
     } catch (error) {
       throw new HttpException('Cannot find user', HttpStatus.BAD_REQUEST);
