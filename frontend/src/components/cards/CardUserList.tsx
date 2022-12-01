@@ -8,7 +8,7 @@ const CardUserList = () => {
 
     const [Users, setUsers] = useState<userInterface[]>([]);
 
-    const apiUrl = "http://localhost:8080";
+    const apiUrl = "http://localhost:5000";
 
     const requestOptions = {
         method: "GET",
@@ -19,7 +19,7 @@ const CardUserList = () => {
     };
 
     const getUser = async () => {
-        fetch("http://localhost:8080/users/listUsers", requestOptions)
+        fetch("http://localhost:5000/users/listUsers", requestOptions)
             .then((response) => response.json())
             .then((res) => {
                 if (res) {

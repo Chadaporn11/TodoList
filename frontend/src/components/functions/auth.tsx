@@ -15,11 +15,14 @@ export const login = async (user: Partial<userInterface>) => {
 export const createUser = async (user: any) => {
   console.log(user)
   const apiUrl = "http://localhost:5000/users/createUser";
-  const requestOptions = {
+  const requestOptionsPost = {
     method: "POST",
-    Headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({user}),
-  }
-  return await fetch(apiUrl, requestOptions)
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  console.log(requestOptionsPost)
+  return await fetch(apiUrl, requestOptionsPost)
 
 }

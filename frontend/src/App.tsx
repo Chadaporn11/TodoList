@@ -23,11 +23,11 @@ function App() {
         <Menu></Menu>
         <Routes>
 
-          <Route path="/" element={<UserList />} />
+          <Route path="/user-list" element={<UserList />} />
           <Route path="/create-user" element={<CreateUser />} />
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/create-group" element={<CreateGroup />} />
-          <Route path="/my-group" element={<MyGroup />} />
+          <Route path="/" element={<MyGroup />} />
           <Route path="/add-group" element={<AddGroup />} />
 
         </Routes>
