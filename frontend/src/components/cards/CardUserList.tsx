@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { getUserlist, removeUser } from '../functions/user';
 //ant design
 import { Card, Row, Col, List } from 'antd';
-import { EditOutlined, DeleteOutlined,UserAddOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { userInterface } from '../../models/IUser';
+
 const CardUserList = () => {
 
     const [Users, setUsers] = useState<userInterface[]>([]);
@@ -28,6 +29,9 @@ const CardUserList = () => {
                 }
             });
     };
+
+
+
     const handleRemove = (item: any) => {
         const id = item.id
         const token = localStorage.getItem('access_token')
@@ -44,12 +48,12 @@ const CardUserList = () => {
             })
 
     }
-    const handleEdit = (item:any) => {
+    const handleEdit = (item: any) => {
         const id = item.id
-        localStorage.setItem('edit_user',id)
+        localStorage.setItem('edit_user', id)
         navigate('/edit-user')
     }
-    
+
 
     useEffect(() => {
         loadData();
@@ -60,7 +64,7 @@ const CardUserList = () => {
         <>
             <List
                 grid={{
-     
+
                     lg: 0,
 
                 }}
@@ -68,27 +72,42 @@ const CardUserList = () => {
                 dataSource={Users}
                 renderItem={(item) => (
                     <List.Item>
-                        <Card bodyStyle={{ width: '1100px', height: '80px', display: 'flex', alignItems: 'center' }}>
-                            <div className='card-img'>
-                            {item.img === null || item.img === "string"
-                            ? <UserAddOutlined />
-                            : <img src={item.img} alt="avatar" style={{ width: '100%' }} /> 
-                            }
+                        <Row>
 
+                            <Col span={24}>
+                                <Card bodyStyle={{ width:'1100px',display: 'flex', alignItems: 'center' }}>
 
-                            </div>
-                            <div className='card-name'>
-                                <h3>{item.username}</h3>
-                            </div>
-                            <div className='card-title'>
-                                <p>{item.address}</p>
-                            </div>
-                            <div className='card-action'>
-                                <EditOutlined onClick={(e) => handleEdit(item)}/>
-                                <DeleteOutlined onClick={(e) => handleRemove(item)} />
-                            </div>
+                                    <Col span={3}>
+                                        <div className='card-img'>
+                                            {item.img === null || item.img === "string"
+                                                ? <UserAddOutlined />
+                                                : <img src={item.img} alt="avatar" style={{ width: '90%' ,marginRight: '2%'}} />
+                                            }
+                                        </div>
+                                    </Col>
 
-                        </Card>
+                                    <Col span={10}>
+                                        <div className='card-name'>
+                                            <h3>{item.username}</h3>
+                                        </div>
+                                    </Col>
+
+                                    <Col span={7}>
+                                        <div className='card-title'>
+                                            <p>{item.address}</p>
+                                        </div>
+                                    </Col>
+
+                                    <Col span={3}>
+                                        <div className='card-action'>
+                                            <EditOutlined onClick={(e) => handleEdit(item)} />
+                                            <DeleteOutlined onClick={(e) => handleRemove(item)} />
+                                        </div>
+                                    </Col>
+
+                                </Card>
+                            </Col>
+                        </Row>
                     </List.Item>
                 )}
             />
