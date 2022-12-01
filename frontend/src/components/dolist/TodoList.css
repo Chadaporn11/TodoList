@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-input {
+/* input {
     margin-top: 5%;
     position: relative;
     display: inline-block;
@@ -38,5 +38,5 @@ input[type=text] {
     outline: none;
     border-radius: 25px 25px 25px 25px;
 
-}
+} */
 

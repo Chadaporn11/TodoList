@@ -5,8 +5,59 @@ import './AddGroup.css';
 //ant design
 import { Button, Input, Row } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
-
+import { GroupInterface } from '../../models/IGroup';
 const AddGroup = () => {
+
+    const [Group, setGroup] = React.useState<Partial<GroupInterface>>({});
+
+    const handleInputChange = (
+
+        event: React.ChangeEvent<{ id?: string; value: any }>
+    
+      ) => {
+    
+        const id = event.target.id as keyof typeof Group;
+    
+        const { value } = event.target;
+    
+        setGroup({ ...Group, [id]: value });
+
+       
+        const apiUrl = "http://localhost:8080";
+
+        function submit() {
+
+            let data = {
+            
+            };
+            
+
+        const requestOptionsPost = {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          };
+          console.log(apiUrl)
+      
+          fetch(`${apiUrl}/teacherrecords`, requestOptionsPost)
+      
+            .then((response) => response.json())
+            .then((res) => {
+              if (res.data) {
+                alert('success')
+              } else {
+                alert('fail')
+              }
+            });
+      
+        }
+      
+    
+      };
+
     return (
         <div className='addgroup-container'>
             <Row>

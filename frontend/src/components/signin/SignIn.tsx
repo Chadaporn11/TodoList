@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SignIn.css'
-
+import { SigninsInterface } from '../../models/ISignIn';
 //layouts
 import Menu from '../layouts/Menubar'
 
@@ -8,9 +8,48 @@ import Menu from '../layouts/Menubar'
 import { Button, Form, Input } from "antd";
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 
+
+
 const SignIn = () => {
     const [size, setSize] = useState<SizeType>('large');
     const [form] = Form.useForm();
+    const [signin, setSignin] = useState<Partial<SigninsInterface>>({});
+
+    const login = () => {
+        const apiUrl = "http://localhost:8080/auth/login";
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(signin),
+        };
+        console.log(requestOptions)
+        fetch(apiUrl, requestOptions)
+          .then((response) => response.json())
+          .then((res) => {
+            if (res) {
+             alert('success')
+              console.log(res)
+              localStorage.setItem("msg", res.msg);//ยืนยัน
+              localStorage.setItem("userId", res.userId);//ส่ง id มาพร้อมกับ token
+              localStorage.setItem("access_token", res.access_token);
+              console.log(res)
+            //   window.location.reload()
+            } else {
+              console.log(res)
+              alert('fail')
+    
+            }
+          });
+      };
+
+      const handleInputChange = (
+        event: React.ChangeEvent<{ id?: string; value: any }>
+      ) => {
+        const id = event.target.id as keyof typeof signin;
+        const { value } = event.target;
+        setSignin({ ...signin, [id]: value });
+        console.log(signin)
+      };
 
     return (
 
@@ -21,14 +60,24 @@ const SignIn = () => {
                 <Form form={form} layout="vertical">
                     <Form.Item >
                         <p>User Name</p>
-                        <Input placeholder="Enter your email address" />
+                        <Input 
+                        type='string'
+                        name='username'
+                        id='username'
+                        onChange={handleInputChange}
+                        placeholder="Enter your email address" />
                     </Form.Item>
                     <Form.Item>
                         <p>Password</p>
-                        <Input placeholder="Enter your password" />
+                        <Input 
+                          type='password'
+                          name='password'
+                          id='password'
+                          onChange={handleInputChange}
+                          placeholder="Enter your password" />
                     </Form.Item>
                     <Form.Item>
-                        <Button className='button-center' type="primary" >
+                        <Button onClick={login}  className='button-center' type="primary" >
                             Submit
                         </Button>
                     </Form.Item>
