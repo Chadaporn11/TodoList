@@ -31,6 +31,11 @@ export class TaskController {
     return this.taskService.findOne(+id);
   }
 
+  @Get('getTaskByGid/:id')
+  findByGroup(@Param('id') id: string) {
+    return this.taskService.findTaskByGid(+id);
+  }
+
   @Patch('updateTask/:id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.taskService.update(+id, updateTaskDto);

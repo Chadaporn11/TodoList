@@ -38,13 +38,14 @@ export class TaskService {
     return data;
   }
 
-  /*async findTaskByGid(id: number): Promise<any>{
+  async findTaskByGid(id: number): Promise<any>{
     return await this.taskRepo
       .createQueryBuilder('task')
       .leftJoinAndSelect('task.user','user')
       .leftJoinAndSelect('task.group','group')
-      .where()
-  }*/
+      .where('task.groupId = :groupId',{groupId: id})
+      .getMany();
+  }
 
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     const data = await this.findOne(id);

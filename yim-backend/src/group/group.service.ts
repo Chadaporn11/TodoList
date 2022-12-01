@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
@@ -15,13 +15,17 @@ export class GroupService {
     private userService: UsersService,
   ) {}
   async create(createGroupDto: CreateGroupDto): Promise<Group> {
-    const { name, user } = createGroupDto;
-    const findUser = await this.userService.findOne(user.id);
-    const DataInsert = this.groupRepo.create({
+    try {
+      const { name, user } = createGroupDto;
+      const findUser = await this.userService.findOne(user.id);
+      const DataInsert = this.groupRepo.create({
       name: name,
       user: findUser,
     });
-    return this.groupRepo.save(DataInsert);
+      return await this.groupRepo.save(DataInsert);
+    } catch (error) {
+        throw new HttpException('Cannot Create Groups',HttpStatus.BAD_REQUEST);
+    }
   }
 
   async findAll(): Promise<Group[]> {
@@ -34,7 +38,7 @@ export class GroupService {
       .createQueryBuilder('group')
       .leftJoinAndSelect('group.user', 'user')
       .where('group.userId = :userId', { userId: id })
-      .getMany();
+      .getOne();
   }
 
   //serach group by GroupId for update group.
