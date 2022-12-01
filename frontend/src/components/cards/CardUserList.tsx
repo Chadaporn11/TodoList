@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import './CardUserList.css';
+import { useNavigate } from 'react-router-dom';
+//function
+import { getUserlist, removeUser } from '../functions/user';
+//ant design
 import { Card, Row, Col, List } from 'antd';
-import { UserOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined,UserAddOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { userInterface } from '../../models/IUser';
 const CardUserList = () => {
 
     const [Users, setUsers] = useState<userInterface[]>([]);
+    const navigate = useNavigate();
 
-    const apiUrl = "http://localhost:5000";
 
-    const requestOptions = {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            "Content-Type": "application/json",
-        },
-    };
 
-    const getUser = async () => {
-        fetch("http://localhost:5000/users/listUsers", requestOptions)
+    const loadData = async () => {
+        const token = localStorage.getItem('access_token')
+        getUserlist(token)
             .then((response) => response.json())
             .then((res) => {
                 if (res) {
@@ -30,9 +28,31 @@ const CardUserList = () => {
                 }
             });
     };
+    const handleRemove = (item: any) => {
+        const id = item.id
+        const token = localStorage.getItem('access_token')
+        console.log(token)
+        removeUser(token, id)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res)
+                loadData();
+
+            }).catch((err) => {
+                console.log(err)
+
+            })
+
+    }
+    const handleEdit = (item:any) => {
+        const id = item.id
+        localStorage.setItem('edit_user',id)
+        navigate('/edit-user')
+    }
+    
 
     useEffect(() => {
-        getUser();
+        loadData();
 
     }, []);
 
@@ -40,9 +60,9 @@ const CardUserList = () => {
         <>
             <List
                 grid={{
-               
+     
                     lg: 0,
-               
+
                 }}
                 bordered={false}
                 dataSource={Users}
@@ -50,10 +70,11 @@ const CardUserList = () => {
                     <List.Item>
                         <Card bodyStyle={{ width: '1100px', height: '80px', display: 'flex', alignItems: 'center' }}>
                             <div className='card-img'>
-                                <Avatar
-                                    shape="square"
-                                    size={55}
-                                    icon={<UserOutlined />} />
+                            {item.img === null || item.img === "string"
+                            ? <UserAddOutlined />
+                            : <img src={item.img} alt="avatar" style={{ width: '100%' }} /> 
+                            }
+
 
                             </div>
                             <div className='card-name'>
@@ -63,18 +84,14 @@ const CardUserList = () => {
                                 <p>{item.address}</p>
                             </div>
                             <div className='card-action'>
-                                <EditOutlined />
-                                <DeleteOutlined />
+                                <EditOutlined onClick={(e) => handleEdit(item)}/>
+                                <DeleteOutlined onClick={(e) => handleRemove(item)} />
                             </div>
 
                         </Card>
                     </List.Item>
                 )}
             />
-
-
-
-
         </>
     )
 }

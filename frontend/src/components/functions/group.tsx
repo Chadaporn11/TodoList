@@ -40,4 +40,3 @@ export const creategroup = async (group: Partial<GroupInterface>) => {
     return await fetch(apiUrl, requestOptionsPost)
   
   }
-

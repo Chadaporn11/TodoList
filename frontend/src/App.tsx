@@ -13,6 +13,7 @@ import CreateUser from './components/user/CreateUser';
 import TodoList from './components/dolist/TodoList';
 import MyGroup from './components/group/MyGroup';
 import AddGroup from './components/group/AddGroup'
+import EditUser from './components/user/EditUser';
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
           <Route path="/todolist" element={<TodoList />} />
           <Route path="/" element={<MyGroup />} />
           <Route path="/add-group" element={<AddGroup />} />
+          <Route path="/edit-user" element={<EditUser />} />
+
 
         </Routes>
       </BrowserRouter>

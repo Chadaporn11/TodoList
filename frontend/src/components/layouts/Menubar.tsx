@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Menubar.css';
-import { Link } from 'react-router-dom';
-import { PieChartOutlined, UserOutlined, LoginOutlined, AntDesignOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
 
@@ -32,8 +32,16 @@ const itemsend: MenuProps['items'] = [
 ];
 
 const Menubar = () => {
+
+    const navigate = useNavigate();
+
     const onClick: MenuProps['onClick'] = (e) => {
-        console.log('click ', e);
+        console.log('click ', e.key);
+        if(e.key === 'logout'){
+            window.location.reload()
+            navigate('/login')
+            localStorage.clear();
+        }
     };
     return (
         <div className='menubar-container'>

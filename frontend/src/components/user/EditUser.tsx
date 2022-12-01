@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CreateUser.css';
 import { useNavigate } from 'react-router-dom';
 //models type
 import { userInterface } from '../../models/IUser';
 //function
-import { createUser } from '../functions/user';
+import { getUser, updateUser } from '../functions/user';
 //ant design
 import {
     LockOutlined,
@@ -43,10 +43,11 @@ const beforeUpload = (file: RcFile) => {
 };
 
 
-const CreateUser = () => {
+const EditUser = () => {
 
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
+    const [dataget, setDataget] = useState<Partial<userInterface>>({});
     const [user, setUser] = useState<Partial<userInterface>>({});
     const navigate = useNavigate();
 
@@ -73,63 +74,71 @@ const CreateUser = () => {
     );
 
     const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
-        const name = event.target.id as keyof typeof user;
+        const name = event.target.id as keyof typeof dataget;
         const { value } = event.target;
-        setUser({
-            ...user,
+        setDataget({
+            ...dataget,
             [name]: value,
         });
     }
+    console.log('edit_user', dataget)
     const handleSubmit = () => {
         let data = {
-            username: user.username,
-            password: user.password,
-            phone_number: user.phone_number,
-            address: user.address,
+            username: dataget.username,
+            password: dataget.password,
+            phone_number: dataget.phone_number,
+            address: dataget.address,
             img: imageUrl,
         }
+        const edit_user = localStorage.getItem('edit_user')
         const token = localStorage.getItem('access_token')
-        createUser(token, data)
+        updateUser(token, edit_user, data)
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
                 alert(res.msg)
+                localStorage.removeItem('edit_user')
                 navigate('/user-list')
             }).catch((err) => {
                 console.log(err)
             })
-        /*const apiUrl = "http://localhost:5000/users/createUser";
-        const requestOptions = {
-            method: "POST",
-            Headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        }
-        fetch(apiUrl, requestOptions)
 
+    }
+    console.log(user)
+    const handleCancel = () => {
+        localStorage.removeItem('edit_user')
+        navigate('/user-list')
+
+    }
+    const loadData = () => {
+        const token = localStorage.getItem('access_token')
+        const uid = localStorage.getItem('edit_user')
+        getUser(token, uid)
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
+                setDataget(res)
+                setImageUrl(res.img)
             }).catch((err) => {
-                console.log(err.message)
-            })*/
-
-
+                console.log(err)
+            })
     }
-    const handleCancel = () => {
-        navigate('/user-list')
-        
-    }
-    console.log(user)
+    console.log('data', dataget)
+
+    useEffect(() => {
+        loadData()
+    }, [])
 
     return (
         <div className='container'>
-
             <Row>
                 <Col style={{ marginLeft: "4%", marginTop: "5%" }} xs={4} sm={6} md={8} lg={10} xl={12}>
                     <h3>Add User</h3>
                 </Col>
             </Row>
             <div className='container-from'>
+
+
                 <Form
                     name="wrap"
                     labelCol={{ flex: '20px' }}
@@ -138,6 +147,7 @@ const CreateUser = () => {
                     wrapperCol={{ flex: 1 }}
                     colon={false}
                 >
+
                     <Form.Item>
                         <Upload
                             name="img"
@@ -158,8 +168,8 @@ const CreateUser = () => {
                             type="text"
                             name="username"
                             id="username"
-                            placeholder="user name"
-                            value={user.username}
+                            placeholder={dataget.username}
+                            value={dataget.username}
                             onChange={handleInputChange}
                         />
                     </Form.Item>
@@ -169,10 +179,10 @@ const CreateUser = () => {
                             type="text"
                             name="phone_number"
                             id="phone_number"
-                            value={user.phone_number}
+                            value={dataget.phone_number}
                             onChange={handleInputChange}
 
-                            placeholder="Phone Number" />
+                            placeholder={dataget.phone_number} />
                     </Form.Item>
 
                     <Form.Item label={<PushpinOutlined />} name="address">
@@ -180,10 +190,10 @@ const CreateUser = () => {
                             type="text"
                             name="address"
                             id="address"
-                            value={user.address}
+                            value={dataget.address}
                             onChange={handleInputChange}
 
-                            placeholder="Email Address" />
+                            placeholder={dataget.address} />
                     </Form.Item>
 
                     <Form.Item
@@ -194,7 +204,7 @@ const CreateUser = () => {
                             type="text"
                             name="password"
                             id="password"
-                            value={user.password}
+                            value={dataget.password}
                             onChange={handleInputChange}
 
                             placeholder="password" />
@@ -208,20 +218,18 @@ const CreateUser = () => {
                             type="text"
                             name="confirmpassword"
                             id="confirmpassword"
-                            value={user.password}
+                            value="confirmpassword"
                             onChange={handleInputChange}
 
                             placeholder="confirmpassword" />
                     </Form.Item>
-
-
                     <Form.Item>
                         <div className='button-size'>
                             <div className='button-cancel'>
-                                <Button 
-                                type="primary" 
-                                htmlType="submit"
-                                onClick={handleCancel}>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    onClick={handleCancel}>
                                     cancel
                                 </Button>
                             </div>
@@ -236,7 +244,10 @@ const CreateUser = () => {
                         </div>
 
                     </Form.Item>
+
                 </Form>
+
+
             </div>
 
         </div>
@@ -245,4 +256,4 @@ const CreateUser = () => {
 }
 
 
-export default CreateUser;
+export default EditUser;

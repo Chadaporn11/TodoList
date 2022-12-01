@@ -1,0 +1,33 @@
+
+.container{
+    width: 1160px;
+    height: 100vh;
+  
+}
+
+.container-from {
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        width: 1160px;
+        text-align: center;
+        margin-top: 3%;
+        
+}
+
+.button-size {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button-cancel {
+    display: flex;
+
+}
+
+.button-submit {
+    display: flex;
+
+}
