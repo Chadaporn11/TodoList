@@ -18,7 +18,7 @@ import { RolesGuard } from './role/roles.guard';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '1234',
+      password: '11012544',
       database: 'yim_api',
       entities: [User, Group, Task],
       synchronize: true,
