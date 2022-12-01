@@ -24,6 +24,11 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Get('listUsers')
+  listUsers(){
+    return this.usersService.findAll();
+  };
+
   @Get('getCreateUser/:id')
   findUserCreate(@Param('id') id: string) {
     return this.usersService.findUserCreated(+id);

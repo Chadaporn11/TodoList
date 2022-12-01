@@ -29,7 +29,7 @@ const SignIn = () => {
             if (res.msg === 'login complete') {
               alert('success')
               localStorage.setItem("msg", res.msg);//ยืนยัน
-              localStorage.setItem("user", res.user.id);//ส่ง id มาพร้อมกับ token
+              localStorage.setItem("user", res.user);//ส่ง id มาพร้อมกับ token
               localStorage.setItem("access_token", res.access_token);
               console.log(res)
               window.location.reload()

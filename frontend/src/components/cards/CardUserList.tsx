@@ -13,7 +13,7 @@ const CardUserList = () => {
     const requestOptions = {
         method: "GET",
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
         },
     };
@@ -41,7 +41,7 @@ const CardUserList = () => {
             <List
                 grid={{
                
-                    lg: 24,
+                    lg: 0,
                
                 }}
                 bordered={false}
