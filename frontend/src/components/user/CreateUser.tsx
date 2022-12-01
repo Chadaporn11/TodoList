@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './CreateUser.css';
 //models type
 import { userInterface } from '../../models/IUser';
+//function
+import { createUser } from '../functions/auth';
 //ant design
 import {
     LockOutlined,
@@ -56,6 +58,7 @@ const CreateUser = () => {
             getBase64(info.file.originFileObj as RcFile, (url) => {
                 setLoading(false);
                 setImageUrl(url);
+
             });
         }
     };
@@ -74,6 +77,7 @@ const CreateUser = () => {
             ...user,
             [name]: value,
         });
+        console.log(event.target.id)
     }
     const handleSubmit = () => {
         let data = {
@@ -83,8 +87,28 @@ const CreateUser = () => {
             address: user.address,
             img: imageUrl,
         }
-        console.log(data)
-        
+        console.log(user)
+        /*createUser(data)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res.data)
+            }).catch((err) => {
+                console.log(err)
+            });*/
+        const apiUrl = "http://localhost:5000/users/createUser";
+        const requestOptions = {
+            method: "POST",
+            Headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+        }
+        fetch(apiUrl, requestOptions)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res.data)
+            }).catch((err) => {
+                console.log(err.data)
+            })
+
 
     }
     console.log(user)
