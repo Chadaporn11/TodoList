@@ -34,8 +34,11 @@ export class UsersService {
     }
   }
 
-  findAll(): Promise<User[]> {
-    return this.userRepo.find();
+  async findAll(): Promise<User[]> {
+    return await this.userRepo
+      .createQueryBuilder('user')
+      .orderBy('user.id',"ASC")
+      .getMany();
   }
 
   async findUserCreated(id: number) {
@@ -48,7 +51,6 @@ export class UsersService {
 
   async findOne(id: number): Promise<User> {
     try {
-      console.log(id+"find one mt.")
       return await this.userRepo.findOneByOrFail({ id });
     } catch (error) {
       throw new HttpException('Cannot find user', HttpStatus.BAD_REQUEST);
