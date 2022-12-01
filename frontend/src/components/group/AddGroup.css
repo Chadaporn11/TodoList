@@ -28,13 +28,15 @@
 }
 .addgroup-content{
     margin-left: 40px;
+    margin-right: 130px;
     display: flex;
     width: 1120px;
     flex-direction: row;
+    justify-content:space-between;
 }
 .addgroup-content-input{
     display: flex;
-    width: 900px;
+    width: 850px;
 }
 
 .addgroup-content-btn{
