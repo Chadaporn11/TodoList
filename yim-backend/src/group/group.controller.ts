@@ -24,11 +24,6 @@ export class GroupController {
     return this.groupService.create(createGroupDto);
   }
 
-  @Get('listGroups')
-  findAll() {
-    return this.groupService.findAll();
-  }
-
   @Get('getGroup/:id')
   findOne(@Param('id') id: string) {
     return this.groupService.findGroupByUserId(+id);

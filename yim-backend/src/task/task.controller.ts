@@ -24,16 +24,6 @@ export class TaskController {
     return this.taskService.create(createTaskDto);
   }
 
-  @Get('getTasks')
-  findAll() {
-    return this.taskService.findAll();
-  }
-
-  @Get('getTask/:id')
-  findOne(@Param('id') id: string) {
-    return this.taskService.findOne(+id);
-  }
-
   @Get('getTaskByGid/:id')
   findByGroup(@Param('id') id: string) {
     return this.taskService.findTaskByGid(+id);
