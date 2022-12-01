@@ -1,14 +1,11 @@
-.card{
-    margin-right: 20px;
-}
 .box{
     display: flex;
     justify-content:space-around;
     width: 150px;
     height: 150px;
+    background-color: aqua;
 }
 .card-action{
-    margin-right: 20px;
     display: flex;
     width: 150px;
     justify-content: end;
@@ -43,7 +40,6 @@
     justify-items: space-around;
     margin-top: 40px;
     margin-left: 40px;
-    margin-right: 40px;
     flex-direction: row;
-    
+
 }

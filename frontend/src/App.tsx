@@ -38,7 +38,7 @@ function App() {
 
           <Route path="/user-list" element={<UserList />} />
           <Route path="/create-user" element={<CreateUser />} />
-          <Route path="/todolist" element={<TodoList />} />
+          <Route path="/todolist/:id" element={<TodoList />} />
           <Route path="/" element={<MyGroup />} />
           <Route path="/add-group" element={<AddGroup />} />
           <Route path="/edit-user" element={<EditUser />} />

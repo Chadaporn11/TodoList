@@ -117,8 +117,8 @@ const EditUser = () => {
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
-                //setDataget(res)
-                //setImageUrl(res.img)
+                setDataget(res)
+                setImageUrl(res.img)
             }).catch((err) => {
                 console.log(err)
             })
