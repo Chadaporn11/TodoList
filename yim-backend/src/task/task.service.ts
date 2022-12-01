@@ -18,12 +18,11 @@ export class TaskService {
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { name, todo,group, user } = createTaskDto;
+    const { name, group, user } = createTaskDto;
     const findUser = await this.userService.findOne(user.id);
     const findGroup = await this.groupService.findGroup(group.id);
     const dataInsert = await this.taskRepo.create({
       name: name,
-      todo: todo,
       user: findUser,
       group: findGroup,
     });
