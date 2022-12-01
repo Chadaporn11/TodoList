@@ -77,7 +77,6 @@ const CreateUser = () => {
             ...user,
             [name]: value,
         });
-        console.log(event.target.id)
     }
     const handleSubmit = () => {
         let data = {
@@ -85,29 +84,28 @@ const CreateUser = () => {
             password: user.password,
             phone_number: user.phone_number,
             address: user.address,
-            img: imageUrl,
         }
-        console.log(user)
-        /*createUser(data)
+        createUser(data)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res.data)
+                console.log(res)
             }).catch((err) => {
                 console.log(err)
-            });*/
-        const apiUrl = "http://localhost:5000/users/createUser";
+            })
+        /*const apiUrl = "http://localhost:5000/users/createUser";
         const requestOptions = {
             method: "POST",
             Headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user),
+            body: JSON.stringify(data),
         }
         fetch(apiUrl, requestOptions)
+
             .then((response) => response.json())
             .then((res) => {
-                console.log(res.data)
+                console.log(res)
             }).catch((err) => {
-                console.log(err.data)
-            })
+                console.log(err.message)
+            })*/
 
 
     }
