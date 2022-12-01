@@ -29,7 +29,6 @@ const CardUserList = () => {
                 </div>
 
             </Card>
-            
             <br/>
             <Card bodyStyle={{ width: '1100px', height: '80px', display: 'flex', alignItems: 'center' }}>
                 <div className='card-img'>
@@ -51,7 +50,6 @@ const CardUserList = () => {
                 </div>
 
             </Card>
-            
         </>
     )
 }
