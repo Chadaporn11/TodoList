@@ -14,6 +14,7 @@ const CardUserList = () => {
     const navigate = useNavigate();
 
 
+
     const loadData = async () => {
         const token = localStorage.getItem('access_token')
         getUserlist(token)
@@ -59,8 +60,8 @@ const CardUserList = () => {
         <>
             <List
                 grid={{
-
-                    lg: 24,
+     
+                    lg: 0,
 
                 }}
                 bordered={false}

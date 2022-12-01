@@ -16,11 +16,11 @@ export class GroupService {
   ) {}
   async create(createGroupDto: CreateGroupDto): Promise<Group> {
     try {
-      const { name, user } = createGroupDto;
-      const findUser = await this.userService.findOne(user.id);
+      const { name, userId } = createGroupDto;
+      const findUser = await this.userService.findOne(userId);
       const DataInsert = this.groupRepo.create({
-      name: name,
-      user: findUser,
+        name: name,
+        user: findUser,
     });
       return await this.groupRepo.save(DataInsert);
     } catch (error) {
@@ -33,12 +33,13 @@ export class GroupService {
   }
 
   //search group by UserID
-  findGroupByUserId(id: number) {
-    return this.groupRepo
-      .createQueryBuilder('group')
-      .leftJoinAndSelect('group.user', 'user')
-      .where('group.userId = :userId', { userId: id })
-      .getOne();
+  async findGroupByUserId(id: number):Promise<Group[]> {
+    return await this.groupRepo
+    .createQueryBuilder('group')
+    .leftJoinAndSelect('group.user', 'user')
+    .where('group.userId = :userId', { userId: id })
+    .getMany();
+    
   }
 
   //serach group by GroupId for update group.
@@ -47,13 +48,22 @@ export class GroupService {
   }
 
   async update(id: number, updateGroupDto: UpdateGroupDto) {
+   try {
     const groupData = await this.findGroup(id);
     const { name } = updateGroupDto;
     if (name) groupData.name = name;
     return await this.groupRepo.save(groupData);
+   } catch (error) {
+    throw new HttpException('Cannot Update this Group.',HttpStatus.BAD_REQUEST);
+   }
   }
 
-  remove(id: number) {
-    return this.groupRepo.delete({ id });
+  async remove(id: number) {
+    try {
+      const findGroup = await this.findGroup(id);
+      return await this.groupRepo.delete({ id });
+    } catch (error) {
+      throw new HttpException('Cannot Remove this Group.',HttpStatus.BAD_REQUEST);
+    }
   }
 }

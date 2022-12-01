@@ -1,7 +1,8 @@
 import { userInterface } from "./IUser"
 export interface GroupInterface {
-    ID: number,
+    id: number,
     name: string,
-    userID : userInterface
+    userid : number,
+    user : userInterface
 
 }

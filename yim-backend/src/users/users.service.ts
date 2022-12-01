@@ -42,12 +42,13 @@ export class UsersService {
     return await this.userRepo
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.userCreate', 'userCreate')
-      .groupBy()
+      .where('user.userCreateId = :userCreateId', { userCreateId : id})
       .getOne();
   }
 
   async findOne(id: number): Promise<User> {
     try {
+      console.log(id+"find one mt.")
       return await this.userRepo.findOneByOrFail({ id });
     } catch (error) {
       throw new HttpException('Cannot find user', HttpStatus.BAD_REQUEST);
@@ -63,7 +64,10 @@ export class UsersService {
       const user = await this.findOne(id);
       const { username, password, phone_number, address, img } = updateUserDto;
       if (username) user.username = username;
-      if (password) user.password = password;
+      if (password) {
+        const hashPassword = await bcrypt.hashSync(password, 10);
+        user.password = hashPassword;
+      }
       if (phone_number) user.phone_number = phone_number;
       if (address) user.address = address;
       if (img) user.img = img;

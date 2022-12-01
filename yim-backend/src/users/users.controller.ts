@@ -24,16 +24,10 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  //@UseGuards(JwtAuthGuard)
   @Get('listUsers')
-  findAll() {
+  listUsers(){
     return this.usersService.findAll();
-  }
-
-  @Get('getUser/:id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
-  }
+  };
 
   @Get('getCreateUser/:id')
   findUserCreate(@Param('id') id: string) {

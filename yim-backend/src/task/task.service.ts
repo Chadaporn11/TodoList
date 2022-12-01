@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { GroupService } from 'src/group/group.service';
 import { UsersService } from 'src/users/users.service';
@@ -18,9 +18,9 @@ export class TaskService {
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const { name, group, user } = createTaskDto;
-    const findUser = await this.userService.findOne(user.id);
-    const findGroup = await this.groupService.findGroup(group.id);
+    const { name, groupId, userId } = createTaskDto;
+    const findUser = await this.userService.findOne(userId);
+    const findGroup = await this.groupService.findGroup(groupId);
     const dataInsert = await this.taskRepo.create({
       name: name,
       user: findUser,
@@ -29,33 +29,40 @@ export class TaskService {
     return await this.taskRepo.save(dataInsert);
   }
 
-  findAll(): Promise<Task[]> {
-    return this.taskRepo.find();
-  }
-
   async findOne(id: number): Promise<Task> {
-    const data = this.taskRepo.findOneByOrFail({ id });
-    return data;
+    try {
+      const data = this.taskRepo.findOneByOrFail({ id });
+      return data;
+    } catch (error) {
+      throw new HttpException('Task doesn\'t exist.',HttpStatus.BAD_REQUEST);
+    }
   }
 
   async findTaskByGid(id: number): Promise<any>{
-    return await this.taskRepo
-      .createQueryBuilder('task')
-      .leftJoinAndSelect('task.user','user')
-      .leftJoinAndSelect('task.group','group')
-      .where('task.groupId = :groupId',{groupId: id})
-      .getMany();
+    const result =  await this.taskRepo
+    .createQueryBuilder('task')
+    .where('task.groupId = :groupId',{groupId: id})
+    .getManyAndCount();
+    return { data : result[0], row: result[1]}
   }
 
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    const data = await this.findOne(id);
-    const { name } = updateTaskDto;
-    if (name) data.name = name;
-    return await this.taskRepo.save(data);
+    try {
+      const data = await this.findOne(id);
+      const { name } = updateTaskDto;
+      if (name) data.name = name;
+      return await this.taskRepo.save(data);
+    } catch (error) {
+      throw new HttpException('Cannot Updata Task.',HttpStatus.BAD_REQUEST);
+    }
   }
 
   async remove(id: number) {
-    const data = await this.findOne(id);
-    if (data.id) return this.taskRepo.delete(id);
+    try {
+      const data = await this.findOne(id);
+      if (data.id) return await this.taskRepo.delete(id);
+    } catch (error) {
+      throw new HttpException('Cannot Remove.',HttpStatus.BAD_REQUEST);
+    }
   }
 }
