@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { throws } from 'assert';
 
 @Injectable()
 export class AuthService {
@@ -20,10 +21,12 @@ export class AuthService {
   }
 
   async login(user: any){
-    const playload = { username: user.username, sub: user.id };
+    const findUser = await this.usersService.findByUsername(user.username);
+    const { password, ...result } = findUser;
+    const playload = { username: result.username, sub: result.id };
     return {
       msg: 'login complete',
-      userId: user.id,
+      user: result,
       access_token: this.jwtService.sign(playload),
     }
   }
