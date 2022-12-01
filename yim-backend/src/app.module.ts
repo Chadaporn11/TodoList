@@ -9,6 +9,8 @@ import { GroupModule } from './group/group.module';
 import { Group } from './group/entities/group.entity';
 import { Task } from './task/entities/task.entity';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './role/roles.guard';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -28,7 +30,10 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [{
+    provide: APP_GUARD,
+    useClass: RolesGuard
+  }],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
