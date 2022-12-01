@@ -1,7 +1,7 @@
 import { GroupInterface } from "../../models/IGroup";
 
-export const getgroup = async () => {
-    const apiUrl = "http://localhost:5000/group/listGroups";
+export const getgroup = async (Userid : any) => {
+    const apiUrl = `http://localhost:5000/group/getGroup/${Userid}`;
     const requestOptionsGet =  {
     method: "GET",
     headers: {

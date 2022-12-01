@@ -58,7 +58,7 @@ const AddGroup = () => {
             .then((res) => {
                 if (res) {
                     console.log(res)
-                    // alert("Add Group Success")
+                    alert("Add Group Success")
                 } else {
                     console.log(res)
                     alert("Add Group fail")
