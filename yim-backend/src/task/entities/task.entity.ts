@@ -13,10 +13,6 @@ export class Task {
   @Column({ default: '' })
   name: string;
 
-  @IsNotEmpty()
-  @Column({ default: ''})
-  todo: string;
-
   @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'CASCADE' })
   user: User;
 
