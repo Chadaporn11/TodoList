@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { IsNotEmpty } from 'class-validator';
 import { Group } from 'src/group/entities/group.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -8,8 +9,13 @@ export class Task {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @IsNotEmpty()
   @Column({ default: '' })
   name: string;
+
+  @IsNotEmpty()
+  @Column({ default: ''})
+  todo: string;
 
   @ManyToOne(() => User, (user) => user.tasks, { onDelete: 'CASCADE' })
   user: User;

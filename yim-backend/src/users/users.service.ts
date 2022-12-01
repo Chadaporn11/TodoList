@@ -41,7 +41,7 @@ export class UsersService {
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.userCreate', 'userCreate')
       .where('user.userCreateId = :userId', { userId: id })
-      .getMany();
+      .getOne();
   }
 
   async findOne(id: number): Promise<User> {
