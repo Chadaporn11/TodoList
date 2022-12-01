@@ -8,12 +8,14 @@ import { GroupInterface } from '../../models/IGroup';
 import { getgroup, listbyId } from '../functions/group';
 const CardMyGroup = () => {
     const [Group, setGroup] = React.useState<GroupInterface[]>([]);
+    const Userid = localStorage.getItem("user")
 
     const handleRemove = () => {
         console.log('remove')
     }
     const userId = localStorage.getItem('user');
     useEffect(() => {
+
         listbyId(userId)
         .then((response) => response.json())
         .then((res) => {
@@ -29,7 +31,7 @@ const CardMyGroup = () => {
     return (
         <>
             <List
-                grid={{ gutter: 16, column: 4 }}
+                grid={{ gutter: 16}}
                 dataSource={Group}
                 renderItem={(item) => (
                     <List.Item>
@@ -39,10 +41,10 @@ const CardMyGroup = () => {
                                     <DeleteOutlined onClick={handleRemove} />
                                 </div>
                                 <div className='card-name'>
-                                    <h3>Name</h3>
+                                    <h3>{item.name}</h3>
                                 </div>
                                 <div className='card-title'>
-                                    <p>sub title</p>
+                                    <p>{12}</p>
                                 </div>
                             </Card>
                         </div>
