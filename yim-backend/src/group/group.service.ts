@@ -33,12 +33,13 @@ export class GroupService {
   }
 
   //search group by UserID
-  findGroupByUserId(id: number) {
-    return this.groupRepo
-      .createQueryBuilder('group')
-      .leftJoinAndSelect('group.user', 'user')
-      .where('group.userId = :userId', { userId: id })
-      .getOne();
+  async findGroupByUserId(id: number):Promise<Group[]> {
+    return await this.groupRepo
+    .createQueryBuilder('group')
+    .leftJoinAndSelect('group.user', 'user')
+    .where('group.userId = :userId', { userId: id })
+    .getMany();
+    
   }
 
   //serach group by GroupId for update group.
