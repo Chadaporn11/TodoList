@@ -16,8 +16,8 @@ export class GroupService {
   ) {}
   async create(createGroupDto: CreateGroupDto): Promise<Group> {
     try {
-      const { name, user } = createGroupDto;
-      const findUser = await this.userService.findOne(user.id);
+      const { name, userId } = createGroupDto;
+      const findUser = await this.userService.findOne(userId);
       const DataInsert = this.groupRepo.create({
         name: name,
         user: findUser,

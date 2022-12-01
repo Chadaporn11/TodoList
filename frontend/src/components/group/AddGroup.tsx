@@ -32,10 +32,10 @@ const AddGroup = () => {
 
     function submit() {
 
-        const user = localStorage.getItem("user")
+        const user = localStorage.getItem("user");
         let data = {
             name: Group.name,
-            user: user,
+            userId: user,
         };
 
         console.log(data)
