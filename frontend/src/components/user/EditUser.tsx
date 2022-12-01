@@ -81,7 +81,6 @@ const EditUser = () => {
             [name]: value,
         });
     }
-    console.log('edit_user', dataget)
     const handleSubmit = () => {
         let data = {
             username: dataget.username,
@@ -104,6 +103,7 @@ const EditUser = () => {
             })
 
     }
+    console.log('edit_user', dataget)
     console.log(user)
     const handleCancel = () => {
         localStorage.removeItem('edit_user')
@@ -117,8 +117,8 @@ const EditUser = () => {
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
-                setDataget(res)
-                setImageUrl(res.img)
+                //setDataget(res)
+                //setImageUrl(res.img)
             }).catch((err) => {
                 console.log(err)
             })

@@ -13,7 +13,7 @@ export const login = async (user: Partial<userInterface>) => {
   return await fetch(apiUrl, requestOptionsPost)
 
 }
-export const createUser = async (access_token:any, user: any) => {
+export const createUser = async (access_token: any, user: any) => {
   console.log(user)
   const apiUrl = "http://localhost:5000/users/createUser";
   const requestOptions = {
@@ -56,8 +56,9 @@ export const getUserlist = async (access_token: any) => {
   return await fetch(apiUrl, requestOptions)
 }
 
-export const getUser = async (access_token: any,id: any) => {
-  const apiUrl = "http://localhost:5000/users/getUser/"+id;
+export const getUser = async (access_token: any, id: any) => {
+  console.log(access_token,id)
+  const apiUrl = "http://localhost:5000/users/getUser/" + id;
   const requestOptions = {
     method: "GET",
     headers: {
@@ -66,12 +67,10 @@ export const getUser = async (access_token: any,id: any) => {
     },
   };
   return await fetch(apiUrl, requestOptions)
-
-
 }
 
-export const updateUser = async(access_token:any, id: any, value:Partial<userInterface>) => {
-  const apiUrl = "http://localhost:5000/users/updateUser/"+id;
+export const updateUser = async (access_token: any, id: any, value: Partial<userInterface>) => {
+  const apiUrl = "http://localhost:5000/users/updateUser/" + id;
   const requestOptions = {
     method: "PATCH",
     headers: {

@@ -30,13 +30,13 @@ const CardMyGroup = () => {
 
     return (
         <>
+        <div className='container-list'>
             <List
                 grid={{ gutter: 16}}
                 dataSource={Group}
                 renderItem={(item) => (
                     <List.Item>
-                        <div className='card'>
-                            <Card bodyStyle={{ width: '180px', height: '120px', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                            <Card >
                                 <div className='card-action'>
                                     <DeleteOutlined onClick={handleRemove} />
                                 </div>
@@ -47,23 +47,35 @@ const CardMyGroup = () => {
                                     <p>{12}</p>
                                 </div>
                             </Card>
-                        </div>
+                            
+                 
                     </List.Item>
+                    
                 )}
+            
+                
             />
-            <div className="addcard">
-                <Link to='/add-group'>
-                    <Card bodyStyle={{ width: '180px', height: '120px', display: 'flex', alignItems: 'center' }}>
+                <div className='box'></div>
+               {/* <Link to='/add-group'>
+                    <Card >
                         <div className='card-action-btn'>
                             <PlusOutlined />
                         </div>
                     </Card>
-                </Link>
+                </Link> */}
+       
+             
 
+       
             </div>
         </>
+
 
     )
 }
 
 export default CardMyGroup
+
+//bodyStyle={{ width: '180px', height: '120px', display: 'flex', alignItems: 'center' }}
+
+// bodyStyle={{ width: '180px', height: '120px', display: 'flex', alignItems: 'center', flexDirection: 'column' }}

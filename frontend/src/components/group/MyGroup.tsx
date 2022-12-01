@@ -27,9 +27,9 @@ const MyGroup = () => {
             <div className="mygroup-content">
                 <h2 className='title'>My Group</h2>
             </div>
-            <div className="mygroup-card">
+ 
                     <CardMyGroup />
-            </div>
+     
 
 
 
