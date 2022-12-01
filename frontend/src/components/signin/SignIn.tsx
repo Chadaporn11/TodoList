@@ -26,14 +26,13 @@ const SignIn = () => {
         fetch(apiUrl, requestOptions)
           .then((response) => response.json())
           .then((res) => {
-            if (res) {
-             alert('success')
-              console.log(res)
+            if (res.msg === 'login complete') {
+              alert('success')
               localStorage.setItem("msg", res.msg);//ยืนยัน
-              localStorage.setItem("userId", res.userId);//ส่ง id มาพร้อมกับ token
+              localStorage.setItem("user", res.user.id);//ส่ง id มาพร้อมกับ token
               localStorage.setItem("access_token", res.access_token);
               console.log(res)
-            //   window.location.reload()
+              window.location.reload()
             } else {
               console.log(res)
               alert('fail')
