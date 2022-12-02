@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Group } from 'src/group/entities/group.entity';
+import { Role } from 'src/rolse/role.enum';
 import { Task } from 'src/task/entities/task.entity';
 import {
   Column,
@@ -28,6 +29,9 @@ export class User {
 
   @Column({ default: '' })
   img: string;
+
+  @Column({ type: 'enum', enum: Role, default: Role.User})
+  roles: Role;
   
   @ManyToOne(() => User, (user) => user.directReports, { onDelete: 'SET NULL' })
   userCreate: User;
