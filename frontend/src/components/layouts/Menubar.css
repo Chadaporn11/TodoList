@@ -1,7 +1,7 @@
 .menubar-container {
     margin-top: 0;
     width: 200px;
-    min-height: 500px;
+    min-height: 100vh;
     background-color: #063970;
 }
 

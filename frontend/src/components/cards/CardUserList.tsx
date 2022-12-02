@@ -32,8 +32,6 @@ const CardUserList = () => {
             });
     };
 
-
-
     const handleRemove = (item: any) => {
         const id = item.id
         const token = localStorage.getItem('access_token')
