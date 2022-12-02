@@ -51,7 +51,7 @@ const Menubar = () => {
                     icon={<UserOutlined />} />
             </div >
             <div className='menubar-itemtop'>
-                <div className='item'>z
+                <div className='item'>
                     <Menu
                         onClick={onClick}
                         style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
