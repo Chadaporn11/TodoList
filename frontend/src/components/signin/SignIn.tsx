@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignIn.css'
 import { SigninsInterface } from '../../models/ISignIn';
 //layouts
@@ -14,6 +15,7 @@ const SignIn = () => {
     const [size, setSize] = useState<SizeType>('large');
     const [form] = Form.useForm();
     const [signin, setSignin] = useState<Partial<SigninsInterface>>({});
+    
 
     const login = () => {
         const apiUrl = "http://localhost:5000/auth/login";
@@ -31,7 +33,7 @@ const SignIn = () => {
               localStorage.setItem("msg", res.msg);//ยืนยัน
               localStorage.setItem("user", res.user.id);//ส่ง id มาพร้อมกับ token
               localStorage.setItem("access_token", res.access_token);
-              console.log(res)
+              localStorage.setItem("roles", res.user.roles);
               window.location.reload()
             } else {
               console.log(res)

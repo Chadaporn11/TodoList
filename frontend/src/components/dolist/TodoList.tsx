@@ -3,17 +3,17 @@ import { useParams, Link } from 'react-router-dom';
 import './TodoList.css';
 import { TaskInterface } from '../../models/ITask';
 import ItemList from './ItemList';
-import { getTaskGroupByGid } from '../functions/task';
+import { getTaskGroupByGid, updateTask } from '../functions/task';
 //ant design
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Row, Input } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
 
 
 const TodoList = () => {
     const params = useParams();
-    const [task, setTask] = useState<TaskInterface[]>([]);
-    const editTaskname = localStorage.getItem('editTaskname');
-    const editTaskId = localStorage.getItem('editTaskId');
+    const [task, setTask] = useState<Partial<TaskInterface>>({})
+    const [taskitem, setTaskitem] = useState<TaskInterface[]>([]);
+    const [itemlist, setItemlist] = useState<TaskInterface[]>([]);
 
 
     console.log('params', params);
@@ -22,16 +22,43 @@ const TodoList = () => {
             .then((response) => response.json())
             .then((res) => {
                 console.log(res)
-                setTask(res.data)
+                setTaskitem(res.data)
             }).catch((err) => {
                 console.log(err.response.data);
             })
     }
     console.log('task', task)
+    const handleChangeInput = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
+        const id = event.target.id as keyof typeof task;
+        const { value } = event.target;
+        console.log('hello')
+        setTask({ ...task, [id]: value });
+
+    }
+    console.log('changetask', task)
+    const handleChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
+        const id = event.target.id as keyof typeof task;
+        const { value } = event.target;
+        console.log('check', itemlist)
+        setItemlist({ ...itemlist, [id]: value });
+    }
+
+    const handleSave = () => {
+        const user = localStorage.getItem('user');
+        const groupid = params.id;
+        if (itemlist.length > 0) {
+            console.log("have itemlist");
+
+        } else {
+            console.log("don't have itemlist");
+        }
+
+    }
 
     useEffect(() => {
         loadData();
     }, []);
+    console.log('todolist', itemlist)
 
     return (
         <div className='container'>
@@ -50,28 +77,28 @@ const TodoList = () => {
                 <div>
                     <h3>To Do List</h3>
                     <div className='item-save'>
-                        {!editTaskname || !editTaskId
-                            ? <input
-                                id="name"
-                                value="name"
-                                type="text">
-                            </input>
-                            : <input
-                                id="name"
-                                value={editTaskname}
-                                type="text">
-                            </input>}
+                        <input
+                            id="name"
+                            value={task.name}
+                            onChange={handleChangeInput}
+                            type="text" />
 
-                        <Button type="primary" size={'large'}>
+                        <Button type="primary" size={'large'} onClick={handleSave}>
                             Save
                         </Button>
 
-                        <ItemList task={task} loadData={loadData} />
+                        <ItemList
+                            taskitem={taskitem}
+                            loadData={loadData}
+                            handleChangeInput={handleChangeInput}
+                            setTaskitem={setTaskitem}
+                            setItemlist={setItemlist}
+                            itemlist={itemlist} />
 
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
 
 
