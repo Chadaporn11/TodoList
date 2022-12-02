@@ -17,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: '11012544',
+      password: '1234',
       database: 'yim_api',
       entities: [User, Group, Task],
       synchronize: true,

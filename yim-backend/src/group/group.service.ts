@@ -46,6 +46,7 @@ export class GroupService {
     return await this.groupRepo
     .createQueryBuilder('group')
     .leftJoinAndSelect('group.user', 'user')
+    .leftJoinAndSelect('group.tasks','task')
     .where('group.userId = :userId', { userId: id })
     .getMany();
     
