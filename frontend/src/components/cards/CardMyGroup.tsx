@@ -51,7 +51,7 @@ const CardMyGroup = () => {
                 <Row gutter={16}>
                     {Group.map((item) => (
                         <>
-                            <Col span={6}>
+                            <Col span={4}>
                                 <Card className='box' bordered={false}>
                                     <div className='card-action'>
                                         <DeleteOutlined onClick={() => handleRemoveGroup(item.id)} />
@@ -69,7 +69,7 @@ const CardMyGroup = () => {
 
                         </>
                     ))}
-                    <Col span={6}>
+                    <Col span={4}>
                         <Link to='/add-group'>
                             <Card className='box-add' bordered={false} >
                                 <PlusOutlined />

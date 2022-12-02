@@ -6,16 +6,16 @@
 }
 
 .container{
-    width: 1160px;
-    height: 100vh;
+    min-width: 87vw;
+    min-height: 100vh;
   
 }
 .container-list {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1160px;
-    height: 70vh;
+    min-width: 87vw;
+    min-height: 70vh;
     text-align: center;
 }
 
