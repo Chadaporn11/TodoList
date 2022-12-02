@@ -33,9 +33,9 @@ export class GroupService {
     return this.groupRepo.find();
   }
 
-  async getGroupByFilter(filterDtp: GroupFilter): Promise<Group[]>{
+  async getGroupByFilter(id: number,filterDtp: GroupFilter): Promise<Group[]>{
     const { search } = filterDtp;
-    let groups = await this.findAll();
+    let groups = await this.findGroupByUserId(id);
     if (search)
       groups = groups.filter(groups => groups.name.includes(search));
     return groups;

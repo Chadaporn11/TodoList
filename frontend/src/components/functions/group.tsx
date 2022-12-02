@@ -14,7 +14,20 @@ export const getgroup = async (userId: any) => {
 }
 
 export const grouplistbyId = async (userId: any) => {
-  const apiUrl = "http://localhost:5000/group/getGroup/" + userId;
+  const apiUrl = "http://localhost:5000/group/searchGroup/" + userId;
+  const requestOptionsGet = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      "Content-Type": "application/json",
+    },
+  };
+  return await fetch(apiUrl, requestOptionsGet)
+
+}
+
+export const searchbyid = async (userId:any,namegroup : any) => {
+  const apiUrl = `http://localhost:5000/group/searchGroup/${userId}?search=${namegroup}`;
   const requestOptionsGet = {
     method: "GET",
     headers: {

@@ -7,13 +7,15 @@ import { getTaskGroupByGid, updateTask } from '../functions/task';
 //ant design
 import { Button, Col, Row, Input } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
-
+import { createTask } from '../functions/task';
 
 const TodoList = () => {
     const params = useParams();
+
     const [task, setTask] = useState<Partial<TaskInterface>>({})
     const [taskitem, setTaskitem] = useState<TaskInterface[]>([]);
     const [itemlist, setItemlist] = useState<TaskInterface[]>([]);
+
 
 
     console.log('params', params);
@@ -55,6 +57,27 @@ const TodoList = () => {
 
     }
 
+
+        
+    const handleSubmit = () => {
+        let data = {
+            name: addTask.name,
+            userId: typeof userid ==="string" ? parseInt(userid):0 ,
+            groupID: params.id,
+            // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
+        }
+        createTask(data)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res)
+            }).catch((err) => {
+                console.log(err)
+            })
+    }
+
+
+
+
     useEffect(() => {
         loadData();
     }, []);
@@ -64,9 +87,10 @@ const TodoList = () => {
         <div className='container'>
             <Row>
                 <Col style={{ marginLeft: "4%", marginTop: "5%" }} xs={2} sm={4} md={6} lg={8} xl={10}>
-                    <h3>Keynotes files</h3>
+
+                    <h3 className='title'>Keynotes files</h3>
                 </Col>
-                <Col style={{ textAlign: 'right', marginRight: "4%", marginTop: "5%" }} xs={2} sm={4} md={6} lg={8} xl={10}>
+                <Col style={{ textAlign: 'right', marginTop: "7%" }} xs={2} sm={4} md={6} lg={8} xl={10}>
                     <Link to='/'>
                         <LeftCircleFilled style={{ fontSize: '40px', color: '#08c' }} />
 
@@ -77,6 +101,7 @@ const TodoList = () => {
                 <div>
                     <h3>To Do List</h3>
                     <div className='item-save'>
+
                         <input
                             id="name"
                             value={task.name}
@@ -84,6 +109,7 @@ const TodoList = () => {
                             type="text" />
 
                         <Button type="primary" size={'large'} onClick={handleSave}>
+
                             Save
                         </Button>
 

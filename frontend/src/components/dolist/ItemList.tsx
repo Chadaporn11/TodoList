@@ -5,9 +5,10 @@ import { deleteTask } from '../functions/task';
 //models
 import { TaskInterface } from '../../models/ITask';
 //ant design
-import { Col, Row, Card, List } from 'antd';
+import { Col, Row, Card, List, MenuProps } from 'antd';
 import { CheckOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 type ItemListProps = {
+
     taskitem: TaskInterface[]
     loadData: () => void
     handleChangeInput: (event: React.ChangeEvent<{
@@ -22,6 +23,7 @@ type ItemListProps = {
 const ItemList = (props: ItemListProps) => {
     const { taskitem, handleChangeInput, setTaskitem, setItemlist, itemlist } = props;
     console.log('props', props)
+
     const handleRemoveTask = (tid: number) => {
         console.log('tid', tid)
         const token = localStorage.getItem('access_token')
@@ -40,6 +42,7 @@ const ItemList = (props: ItemListProps) => {
 
 
 
+
     console.log('itemlist', itemlist)
 
     const handleEditTask = (item: any) => {
@@ -48,7 +51,17 @@ const ItemList = (props: ItemListProps) => {
         console.log('item', item)
         setItemlist({ ...item })
 
+
     }
+
+
+
+
+
+    useEffect(() => {
+
+    }, [])
+
     return (
         <>
             <Card style={{ width: 800 }}>
@@ -66,10 +79,25 @@ const ItemList = (props: ItemListProps) => {
                                         <p>{item.name}</p>
                                     </Col>
                                     <Col style={{ textAlign: 'right' }} span={12}>
+                                        <button  className='icon'
+                                            disabled={false} onClick={() => handleClick(item.id)}>
+                                            <CheckOutlined/>
+                                        </button>
+                                        <button className='icon'
+                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
+                                            <EditOutlined/>
+                                        </button>
+                                        <button className='icon'
+                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
+                                            <DeleteOutlined/>
+                                        </button>
+
+
 
                                         <CheckOutlined className='icon' />
                                         <EditOutlined className='icon' onClick={() => handleEditTask(item)} />
                                         <DeleteOutlined onClick={() => handleRemoveTask(item.id)} />
+
 
                                     </Col>
                                 </Row>
