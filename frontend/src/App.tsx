@@ -14,17 +14,20 @@ import TodoList from './components/dolist/TodoList';
 import MyGroup from './components/group/MyGroup';
 import AddGroup from './components/group/AddGroup'
 import EditUser from './components/user/EditUser';
+import LoadingToRedirect from './components/LoadingToRedirect';
 
 function App() {
 
-  const [Msg,setMsg] = React.useState("");
+  const [Msg, setMsg] = React.useState("");
+  const role = localStorage.getItem('roles');
+  console.log(role)
 
   useEffect(() => {
     const msg = localStorage.getItem("msg");
     if (msg === "login complete") {
       setMsg(msg)
     }
-  },[]);
+  }, []);
 
   if (!Msg) {
     return <SignIn></SignIn>
@@ -33,20 +36,35 @@ function App() {
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <BrowserRouter>
-        <Menubar/>
-        <Routes>
-
-          <Route path="/user-list" element={<UserList />} />
-          <Route path="/create-user" element={<CreateUser />} />
-          <Route path="/todolist/:id" element={<TodoList />} />
-          <Route path="/" element={<MyGroup />} />
-          <Route path="/add-group" element={<AddGroup />} />
-          <Route path="/edit-user" element={<EditUser />} />
-
-
-        </Routes>
-      </BrowserRouter>
+        <Menubar />
+        {role === 'Admin'
+          ?
+          <>
+            <Routes>
+              <Route path="/user-list" element={<UserList />} />
+              <Route path="/create-user" element={<CreateUser />} />
+              <Route path="/edit-user/:id" element={<EditUser />} />
+              <Route path="/todolist/:id" element={<TodoList />} />
+              <Route path="/" element={<MyGroup />} />
+              <Route path="/add-group" element={<AddGroup />} />
+            </Routes>
+          </>
+          : <>
+            <Routes>
+            <Route path="/user-list" element={<LoadingToRedirect />} />
+              <Route path="/create-user" element={<LoadingToRedirect />} />
+              <Route path="/edit-user/:id" element={<LoadingToRedirect />} />
+              <Route path="/todolist/:id" element={<TodoList />} />
+              <Route path="/" element={<MyGroup />} />
+              <Route path="/add-group" element={<AddGroup />} />
+            </Routes>
+          </>
+        }
+      </BrowserRouter >
     </div>
+
+
+
   );
 }
 

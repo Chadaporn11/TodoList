@@ -41,3 +41,19 @@ export const getTaskGroupByGid = async (groupId: any) => {
     return await fetch(apiUrl, requestOptionsPost)
 
   }
+
+  export const updateTask = async (task:any) => {
+    const apiUrl = "http://localhost:5000/task/updateTask";
+    const requestOptionsPost = {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+
+    };
+    console.log(requestOptionsPost)
+    return await fetch(apiUrl, requestOptionsPost)
+
+  }

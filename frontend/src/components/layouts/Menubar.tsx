@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Menubar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
@@ -23,7 +23,12 @@ function getItem(
     } as MenuItem;
 }
 
-const itemstop: MenuProps['items'] = [
+const itemsuser: MenuProps['items'] = [
+
+    getItem(<Link to='/'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
+];
+const itemsadmin: MenuProps['items'] = [
+
     getItem(<Link to='/'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
     getItem(<Link to='/user-list'>User</Link>, 'user', <UserOutlined />),
 ];
@@ -34,13 +39,18 @@ const itemsend: MenuProps['items'] = [
 const Menubar = () => {
 
     const navigate = useNavigate();
+    const loacation = useLocation();
+
+    const roles = localStorage.getItem('roles')
+
 
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e.key);
-        if(e.key === 'logout'){
-            window.location.reload()
-            navigate('/login')
+        if (e.key === 'logout') {
+            navigate('/')
             localStorage.clear();
+            window.location.reload()
+
         }
     };
     return (
@@ -52,14 +62,24 @@ const Menubar = () => {
             </div >
             <div className='menubar-itemtop'>
                 <div className='item'>
-                    <Menu
-                        onClick={onClick}
-                        style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
-                        mode="inline"
-                        items={itemstop}
-                    />
+                    {roles === 'user'
+                        ? <Menu
+                            onClick={onClick}
+                            style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                            items={itemsuser}
+                        />
+                        : <Menu
+                            onClick={onClick}
+                            style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                            items={itemsadmin}
+                        />}
+
 
                 </div>
             </div>

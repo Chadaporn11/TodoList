@@ -8,21 +8,21 @@ import { TaskInterface } from '../../models/ITask';
 import { Col, Row, Card, List, MenuProps } from 'antd';
 import { CheckOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 type ItemListProps = {
-    task: TaskInterface[]
+
+    taskitem: TaskInterface[]
     loadData: () => void
+    handleChangeInput: (event: React.ChangeEvent<{
+        id?: string | undefined;
+        value: any;
+    }>) => void
+    setTaskitem: React.Dispatch<React.SetStateAction<TaskInterface[]>>
+    setItemlist: React.Dispatch<React.SetStateAction<TaskInterface[]>>
+    itemlist: TaskInterface[]
 }
 
 const ItemList = (props: ItemListProps) => {
-    // console.log('props', props)
-
-    const [state, setstate] = React.useState(true)
-
-    const handleClick = (tid: number) => {
-        console.log('click',tid)
-        console.log('The link was clicked.');
-        setstate(!state)
-        console.log(state,tid)
-    }
+    const { taskitem, handleChangeInput, setTaskitem, setItemlist, itemlist } = props;
+    console.log('props', props)
 
     const handleRemoveTask = (tid: number) => {
         console.log('tid', tid)
@@ -39,12 +39,18 @@ const ItemList = (props: ItemListProps) => {
             })
     }
 
+
+
+
+
+    console.log('itemlist', itemlist)
+
     const handleEditTask = (item: any) => {
         const name: string = item.name;
         const id: string = item.id;
-        // console.log('item',item)
-        localStorage.setItem('editTaskId', id)
-        localStorage.setItem('editTaskname', name)
+        console.log('item', item)
+        setItemlist({ ...item })
+
 
     }
 
@@ -64,7 +70,7 @@ const ItemList = (props: ItemListProps) => {
                         lg: 0
                     }}
                     bordered={false}
-                    dataSource={props.task}
+                    dataSource={taskitem}
                     renderItem={(item) => (
                         <List.Item>
                             <Card style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%", }}>
@@ -86,6 +92,11 @@ const ItemList = (props: ItemListProps) => {
                                             <DeleteOutlined/>
                                         </button>
 
+
+
+                                        <CheckOutlined className='icon' />
+                                        <EditOutlined className='icon' onClick={() => handleEditTask(item)} />
+                                        <DeleteOutlined onClick={() => handleRemoveTask(item.id)} />
 
 
                                     </Col>
