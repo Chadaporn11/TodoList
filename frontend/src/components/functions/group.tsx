@@ -14,7 +14,7 @@ export const getgroup = async (userId: any) => {
 }
 
 export const grouplistbyId = async (userId: any) => {
-  const apiUrl = "http://localhost:5000/group/getGroup/" + userId;
+  const apiUrl = "http://localhost:5000/group/searchGroup/" + userId;
   const requestOptionsGet = {
     method: "GET",
     headers: {
@@ -26,8 +26,8 @@ export const grouplistbyId = async (userId: any) => {
 
 }
 
-export const searchbyid = async (name : any) => {
-  const apiUrl = "http://localhost:5000/group/searchGroup?search=" +name;
+export const searchbyid = async (userId:any,namegroup : any) => {
+  const apiUrl = `http://localhost:5000/group/searchGroup/${userId}?search=${namegroup}`;
   const requestOptionsGet = {
     method: "GET",
     headers: {
