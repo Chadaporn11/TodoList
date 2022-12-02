@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CreateUser.css';
-import { useNavigate } from 'react-router-dom';
+import { useParams ,useNavigate } from 'react-router-dom';
 //models type
 import { userInterface } from '../../models/IUser';
 //function
@@ -50,6 +50,8 @@ const EditUser = () => {
     const [dataget, setDataget] = useState<Partial<userInterface>>({});
     const [user, setUser] = useState<Partial<userInterface>>({});
     const navigate = useNavigate();
+    const params = useParams();
+
 
     const handleChangeImage: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
         if (info.file.status === 'uploading') {
@@ -89,7 +91,7 @@ const EditUser = () => {
             address: dataget.address,
             img: imageUrl,
         }
-        const edit_user = localStorage.getItem('edit_user')
+        const edit_user = params.id;
         const token = localStorage.getItem('access_token')
         updateUser(token, edit_user, data)
             .then((response) => response.json())
@@ -103,16 +105,15 @@ const EditUser = () => {
             })
 
     }
-    console.log('edit_user', dataget)
+    console.log('edit_user', params)
     console.log(user)
     const handleCancel = () => {
-        localStorage.removeItem('edit_user')
         navigate('/user-list')
 
     }
     const loadData = () => {
         const token = localStorage.getItem('access_token')
-        const uid = localStorage.getItem('edit_user')
+        const uid = params.id;
         getUser(token, uid)
             .then((response) => response.json())
             .then((res) => {

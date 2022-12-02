@@ -16,13 +16,13 @@ const CardMyGroup = () => {
     const handleRemoveGroup = (gid: number) => {
         console.log('gid', gid)
         deleteGroup(gid)
-        .then((response) => response.json())
-        .then((res)=> {
-            console.log(res)
-            loadData()
-        }).catch((err)=>{
-            console.log(err)
-        })
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res)
+                loadData()
+            }).catch((err) => {
+                console.log(err)
+            })
 
     }
     const loadData = () => {
@@ -46,49 +46,40 @@ const CardMyGroup = () => {
 
     return (
         <>
-            <br></br>
-            <br></br>
-            <Row>
-                <Col span={22}>
-                    <List
-                        grid={{ gutter: 1 }}
-                        dataSource={Group}
-                        renderItem={(item) => (
-                            <List.Item>
-<Card>
-                                <div className='card-action'>
-                                    <DeleteOutlined onClick={()=>handleRemoveGroup(item.id)}/>
-                                </div>
-                                <Link to={`/todolist/${item.id}`}>
-                                    <div className='card-name'>
-                                        <h3>{item.name}</h3>
+            <div className="site-card-wrapper">
+
+                <Row gutter={16}>
+                    {Group.map((item) => (
+                        <>
+                            <Col span={6}>
+                                <Card className='box' bordered={false}>
+                                    <div className='card-action'>
+                                        <DeleteOutlined onClick={() => handleRemoveGroup(item.id)} />
                                     </div>
-                                    <div className='card-title'>
-                                        <p>{12}</p>
-                                    </div>
-                                </Link>
+                                    <Link to={`/todolist/${item.id}`}>
+                                        <div className='card-name'>
+                                            <h3>{item.name}</h3>
+                                        </div>
+                                        <div className='card-title'>
+                                            <p>{12}</p>
+                                        </div>
+                                    </Link>
+                                </Card>
+                            </Col>
 
-                            </Card>
-
-
-
-
-                            </List.Item>
-
-
-                        )}
-
-
-                    />
-                </Col>
-                <Col span={2} offset={-2}>
-                    <Link to='/add-group'>
-                        <Card >
+                        </>
+                    ))}
+                    <Col span={6}>
+                        <Link to='/add-group'>
+                            <Card className='box-add' bordered={false} >
                                 <PlusOutlined />
-                        </Card>
-                    </Link>
-                </Col>
-            </Row>
+                            </Card>
+                        </Link>
+                    </Col>
+
+                </Row>
+
+            </div>
 
             {/* <div className='box'></div> */}
             {/* <Link to='/add-group'>

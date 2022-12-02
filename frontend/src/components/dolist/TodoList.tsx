@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './TodoList.css';
 import { TaskInterface } from '../../models/ITask';
 import ItemList from './ItemList';
@@ -40,7 +40,10 @@ const TodoList = () => {
                     <h3>Keynotes files</h3>
                 </Col>
                 <Col style={{ textAlign: 'right', marginRight: "4%", marginTop: "5%" }} xs={2} sm={4} md={6} lg={8} xl={10}>
-                    <LeftCircleFilled style={{ fontSize: '30px', color: '#08c' }}></LeftCircleFilled>
+                    <Link to='/'>
+                        <LeftCircleFilled style={{ fontSize: '40px', color: '#08c' }} />
+
+                    </Link>
                 </Col>
             </Row>
             <div className='container-list'>
@@ -63,7 +66,7 @@ const TodoList = () => {
                             Save
                         </Button>
 
-                        <ItemList task={task} loadData={loadData}/>
+                        <ItemList task={task} loadData={loadData} />
 
                     </div>
                 </div>

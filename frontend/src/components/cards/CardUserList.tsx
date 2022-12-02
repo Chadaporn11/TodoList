@@ -52,8 +52,7 @@ const CardUserList = () => {
     }
     const handleEdit = (item: any) => {
         const id = item.id
-        localStorage.setItem('edit_user', id)
-        navigate('/edit-user')
+        navigate(`/edit-user/${id}`)
     }
 
 
