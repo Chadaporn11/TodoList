@@ -45,12 +45,14 @@ const TodoList = () => {
         let data = {
             name: addTask.name,
             userId: typeof userid ==="string" ? parseInt(userid):0 ,
-            groupID: params.id,
+            groupId: params.id,
+            state: true,
             // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
         }
         createTask(data)
             .then((response) => response.json())
             .then((res) => {
+                loadData()
                 console.log(res)
             }).catch((err) => {
                 console.log(err)
@@ -100,7 +102,7 @@ const TodoList = () => {
                             Save
                         </Button>
 
-                        <ItemList task={task} loadData={loadData} />
+                        <ItemList task={task} loadData={loadData} setTask={setTask} />
 
                     </div>
                 </div>

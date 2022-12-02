@@ -19,6 +19,7 @@ export class TaskService {
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
     const { name, groupId, userId } = createTaskDto;
+    console.log(createTaskDto)
     const findUser = await this.userService.findOne(userId);
     const findGroup = await this.groupService.findGroup(groupId);
     const dataInsert = await this.taskRepo.create({
@@ -49,8 +50,9 @@ export class TaskService {
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     try {
       const data = await this.findOne(id);
-      const { name } = updateTaskDto;
+      const { name, state } = updateTaskDto;
       if (name) data.name = name;
+      if (state) data.state = state;
       return await this.taskRepo.save(data);
     } catch (error) {
       throw new HttpException('Cannot Updata Task.',HttpStatus.BAD_REQUEST);

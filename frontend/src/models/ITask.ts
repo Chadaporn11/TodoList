@@ -5,6 +5,6 @@ export interface TaskInterface {
     id: number,
     name: string,
     userId: userInterface,
-    groupId: GroupInterface
-
+    groupId: GroupInterface,
+    state : boolean,
 }
