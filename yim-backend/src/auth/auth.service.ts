@@ -23,7 +23,7 @@ export class AuthService {
   async login(user: any){
     const findUser = await this.usersService.findByUsername(user.username);
     const { password, ...result } = findUser;
-    const playload = { username: result.username, sub: result.id };
+    const playload = { username: result.username, sub: result.id , roles: result.roles};
     return {
       msg: 'login complete',
       user: result,

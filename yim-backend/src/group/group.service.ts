@@ -5,6 +5,7 @@ import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
+import { GroupFilter } from './dto/group-filter.dto';
 import { Group } from './entities/group.entity';
 
 @Injectable()
@@ -30,6 +31,14 @@ export class GroupService {
 
   async findAll(): Promise<Group[]> {
     return this.groupRepo.find();
+  }
+
+  async getGroupByFilter(filterDtp: GroupFilter): Promise<Group[]>{
+    const { search } = filterDtp;
+    let groups = await this.findAll();
+    if (search)
+      groups = groups.filter(groups => groups.name.includes(search));
+    return groups;
   }
 
   //search group by UserID

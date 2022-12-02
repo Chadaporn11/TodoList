@@ -8,11 +8,13 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { GroupService } from './group.service';
 import { CreateGroupDto } from './dto/create-group.dto';
 import { UpdateGroupDto } from './dto/update-group.dto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
+import { GroupFilter } from './dto/group-filter.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('group')
@@ -24,9 +26,13 @@ export class GroupController {
     return this.groupService.create(createGroupDto);
   }
 
-  @Get('listGroups')
-  listGroup(){
-    return this.groupService.findAll();
+  //Pattren apiurl/searchGroup?="keyword"
+  @Get('searchGroup')
+  GetGroup(@Query() filterDtp: GroupFilter){
+    if(Object.keys(filterDtp).length)
+      return 
+    else 
+      return this.groupService.findAll()
   }
 
   @Get('getGroup/:id')
