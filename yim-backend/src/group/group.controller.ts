@@ -30,7 +30,7 @@ export class GroupController {
   @Get('searchGroup')
   GetGroup(@Query() filterDtp: GroupFilter){
     if(Object.keys(filterDtp).length)
-      return 
+      return this.groupService.getGroupByFilter(filterDtp)
     else 
       return this.groupService.findAll()
   }
