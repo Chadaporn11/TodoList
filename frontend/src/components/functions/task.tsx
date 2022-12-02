@@ -36,9 +36,8 @@ export const getTaskGroupByGid = async (groupId: any) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-
     };
-    console.log(requestOptionsPost)
+    console.log(requestOptionsPost.body)
     return await fetch(apiUrl, requestOptionsPost)
 
   }

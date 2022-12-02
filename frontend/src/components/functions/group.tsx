@@ -26,6 +26,19 @@ export const grouplistbyId = async (userId: any) => {
 
 }
 
+export const searchbyid = async (name : any) => {
+  const apiUrl = "http://localhost:5000/group/searchGroup?search=" +name;
+  const requestOptionsGet = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      "Content-Type": "application/json",
+    },
+  };
+  return await fetch(apiUrl, requestOptionsGet)
+
+}
+
 export const creategroup = async (group: Partial<GroupInterface>) => {
   const apiUrl = "http://localhost:5000/group/createGroup";
   const requestOptionsPost = {

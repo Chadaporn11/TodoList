@@ -37,6 +37,9 @@ const CardMyGroup = () => {
             });
 
     }
+
+
+
     console.log('group list', Group)
 
     useEffect(() => {
