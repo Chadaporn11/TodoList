@@ -1,35 +1,46 @@
 import React, { useEffect } from 'react';
 import './CardMyGroup.css';
 import { Link } from 'react-router-dom';
-//ant design
-import { Card, Avatar, List } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+//models
 import { GroupInterface } from '../../models/IGroup';
-import { getgroup, listbyId } from '../functions/group';
+//functions
+import { deleteGroup, grouplistbyId } from '../functions/group';
+//ant design
+import { Card, List } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 const CardMyGroup = () => {
     const [Group, setGroup] = React.useState<GroupInterface[]>([]);
-    const Userid = localStorage.getItem("user")
 
-    const handleRemove = (tid: any) => {
+    const handleRemoveGroup = (gid: number) => {
+        console.log('gid', gid)
+        deleteGroup(gid)
+        .then((response) => response.json())
+        .then((res)=> {
+            console.log(res)
+            loadData()
+        }).catch((err)=>{
+            console.log(err)
+        })
 
     }
-    const userId = localStorage.getItem('user');
-    useEffect(() => {
+    const loadData = () => {
 
-        listbyId(userId)
+        const uid = localStorage.getItem('user');
+        grouplistbyId(uid)
             .then((response) => response.json())
             .then((res) => {
                 setGroup(res)
-                console.log("group res", res)
-                if (res) {
-                    setGroup(res);
-                }
+            }).catch((err) => {
+                console.log(err)
             });
 
-    }, []);
-    const handleClick = (gid: any) => {
-        console.log('gid', gid)
     }
+    console.log('group list', Group)
+
+    useEffect(() => {
+        loadData()
+
+    }, []);
 
     return (
         <>
@@ -39,19 +50,20 @@ const CardMyGroup = () => {
                     dataSource={Group}
                     renderItem={(item) => (
                         <List.Item>
-                            <Link to={`/todolist/${item.id}`}>
-                                <Card>
-                                    <div className='card-action'>
-                                        <DeleteOutlined onClick={(e) => handleRemove(item.id)} />
-                                    </div>
+                            <Card>
+                                <div className='card-action'>
+                                    <DeleteOutlined onClick={()=>handleRemoveGroup(item.id)}/>
+                                </div>
+                                <Link to={`/todolist/${item.id}`}>
                                     <div className='card-name'>
                                         <h3>{item.name}</h3>
                                     </div>
                                     <div className='card-title'>
                                         <p>{12}</p>
                                     </div>
-                                </Card>
-                            </Link>
+                                </Link>
+
+                            </Card>
 
 
 

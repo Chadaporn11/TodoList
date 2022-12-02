@@ -1,7 +1,7 @@
 import { GroupInterface } from "../../models/IGroup";
 
-export const getgroup = async (Userid: any) => {
-  const apiUrl = `http://localhost:5000/group/getGroup/${Userid}`;
+export const getgroup = async (userId: any) => {
+  const apiUrl = `http://localhost:5000/group/getGroup/${userId}`;
   const requestOptionsGet = {
     method: "GET",
     headers: {
@@ -13,7 +13,7 @@ export const getgroup = async (Userid: any) => {
 
 }
 
-export const listbyId = async (userId: any) => {
+export const grouplistbyId = async (userId: any) => {
   const apiUrl = "http://localhost:5000/group/getGroup/" + userId;
   const requestOptionsGet = {
     method: "GET",
@@ -41,10 +41,11 @@ export const creategroup = async (group: Partial<GroupInterface>) => {
 
 }
 
-export const getTaskGroupByGid = async (gid: any) => {
-  const apiUrl = "http://localhost:5000/task/getTaskByGid/"+gid;
+
+export const deleteGroup = async (groupId: any) => {
+  const apiUrl = "http://localhost:5000/group/deleteGroup/"+groupId;
   const requestOptionsPost = {
-    method: "GET",
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       "Content-Type": "application/json",
@@ -54,3 +55,4 @@ export const getTaskGroupByGid = async (gid: any) => {
   return await fetch(apiUrl, requestOptionsPost)
 
 }
+

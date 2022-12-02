@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './TodoList.css';
 import { TaskInterface } from '../../models/ITask';
 import ItemList from './ItemList';
-import { getTaskGroupByGid } from '../functions/group';
+import { getTaskGroupByGid } from '../functions/task';
 //ant design
 import { Button, Col, Row } from 'antd';
 import { LeftCircleFilled } from '@ant-design/icons';
@@ -12,6 +12,9 @@ import { LeftCircleFilled } from '@ant-design/icons';
 const TodoList = () => {
     const params = useParams();
     const [task, setTask] = useState<TaskInterface[]>([]);
+    const editTaskname = localStorage.getItem('editTaskname');
+    const editTaskId = localStorage.getItem('editTaskId');
+
 
     console.log('params', params);
     const loadData = () => {
@@ -24,11 +27,10 @@ const TodoList = () => {
                 console.log(err.response.data);
             })
     }
-    console.log('task',task)
+    console.log('task', task)
 
     useEffect(() => {
         loadData();
-
     }, []);
 
     return (
@@ -45,13 +47,23 @@ const TodoList = () => {
                 <div>
                     <h3>To Do List</h3>
                     <div className='item-save'>
-                        <input type="text">
-                        </input>
+                        {!editTaskname || !editTaskId
+                            ? <input
+                                id="name"
+                                value="name"
+                                type="text">
+                            </input>
+                            : <input
+                                id="name"
+                                value={editTaskname}
+                                type="text">
+                            </input>}
+
                         <Button type="primary" size={'large'}>
                             Save
                         </Button>
 
-                        <ItemList task={task}/>
+                        <ItemList task={task} loadData={loadData}/>
 
                     </div>
                 </div>

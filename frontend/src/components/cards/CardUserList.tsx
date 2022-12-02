@@ -3,11 +3,12 @@ import './CardUserList.css';
 import { useNavigate } from 'react-router-dom';
 //function
 import { getUserlist, removeUser } from '../functions/user';
+//models
+import { userInterface } from '../../models/IUser';
+
 //ant design
 import { Card, Row, Col, List } from 'antd';
 import { EditOutlined, DeleteOutlined,UserAddOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
-import { userInterface } from '../../models/IUser';
 const CardUserList = () => {
 
     const [Users, setUsers] = useState<userInterface[]>([]);
