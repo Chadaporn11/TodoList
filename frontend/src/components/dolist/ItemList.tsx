@@ -50,7 +50,7 @@ const ItemList = (props: ItemListProps) => {
                             <Card style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%", }}>
                                 <Row>
                                     <Col style={{ textAlign: 'left' }} span={12}>
-                                        <p>{item.id}</p>
+                                        <p>{item.name}</p>
                                     </Col>
                                     <Col style={{ textAlign: 'right' }} span={12}>
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardMyGroup from '../cards/CardMyGroup';
 import './MyGroup.css';
 //ant design
@@ -8,7 +8,7 @@ import { GroupInterface } from '../../models/IGroup';
 import { grouplistbyId } from '../functions/group';
 const MyGroup = () => {
     
-    const [Group, setGroup] = React.useState<GroupInterface[]>([]);
+    const [Group, setGroup] = useState<GroupInterface[]>([]);
     // const [option,setoption] = React.useState(Group)
     const userId = localStorage.getItem('user');
     useEffect(() => {

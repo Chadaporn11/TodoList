@@ -1,9 +1,20 @@
+.site-card-wrapper{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
 .box{
     display: flex;
     justify-content:space-around;
-    width: 150px;
     height: 150px;
-    background-color: aqua;
+    margin-bottom: 20px;
+}
+.box-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin-bottom: 20px;
 }
 .card-action{
     display: flex;

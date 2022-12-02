@@ -41,7 +41,8 @@ function App() {
           <Route path="/todolist/:id" element={<TodoList />} />
           <Route path="/" element={<MyGroup />} />
           <Route path="/add-group" element={<AddGroup />} />
-          <Route path="/edit-user" element={<EditUser />} />
+          <Route path="/edit-user/:id" element={<EditUser />} />
+
 
 
         </Routes>
