@@ -27,12 +27,12 @@ export class GroupController {
   }
 
   //Pattren apiurl/searchGroup?="keyword"
-  @Get('searchGroup')
-  GetGroup(@Query() filterDtp: GroupFilter){
+  @Get('searchGroup/:id')
+  GetGroup(@Param() id: string,@Query() filterDtp: GroupFilter){
     if(Object.keys(filterDtp).length)
-      return this.groupService.getGroupByFilter(filterDtp)
+      return this.groupService.getGroupByFilter(+id,filterDtp)
     else 
-      return this.groupService.findAll()
+      return this.groupService.findGroupByUserId(+id)
   }
 
   @Get('getGroup/:id')
