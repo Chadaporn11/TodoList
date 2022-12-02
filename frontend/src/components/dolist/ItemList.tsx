@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './ItemList.css'
 //function
-import { deleteTask } from '../functions/task';
+import { deleteTask, updateTask } from '../functions/task';
 //models
 import { TaskInterface } from '../../models/ITask';
 //ant design
@@ -10,19 +11,42 @@ import { CheckOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 type ItemListProps = {
     task: TaskInterface[]
     loadData: () => void
+    setTask: React.Dispatch<React.SetStateAction<TaskInterface[]>>
 }
 
 const ItemList = (props: ItemListProps) => {
+
+
+    const params = useParams();
+    const { task, loadData, setTask } = props;
+    const groupid = params.id;
+    const userid = localStorage.getItem('user')
     // console.log('props', props)
 
-    const [state, setstate] = React.useState(true)
+    // const [state, setstate] = React.useState()
+    //const [states, setstates] = useState<Partial<TaskInterface>>({});
 
-    const handleClick = (tid: number) => {
-        console.log('click',tid)
-        console.log('The link was clicked.');
-        setstate(!state)
-        console.log(state,tid)
+    const handleClick = (item: TaskInterface) => {
+        const data = [{
+            id: item.id,
+            name: item.name,
+            userId: typeof userid ==="string" ? parseInt(userid):0,
+            groupId: typeof groupid ==="string" ? parseInt(groupid):0,
+            state: !item.state,
+        }]
+        updateTask(data)
+            .then((response) => response.json())
+            .then((res) => {
+                console.log(res)
+
+            }).catch((err) => {
+                console.log(err)
+
+            })
+
     }
+
+    console.log(task, 'teskkkkkkkkkkkkkkkkkkkkkk')
 
     const handleRemoveTask = (tid: number) => {
         console.log('tid', tid)
@@ -30,7 +54,7 @@ const ItemList = (props: ItemListProps) => {
         deleteTask(token, tid)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res)
+                console.log(res, 'ressssssssssssssss')
                 //window.location.reload()
                 props.loadData()
 
@@ -64,26 +88,26 @@ const ItemList = (props: ItemListProps) => {
                         lg: 0
                     }}
                     bordered={false}
-                    dataSource={props.task}
-                    renderItem={(item) => (
+                    dataSource={task}
+                    renderItem={(item, index) => (
                         <List.Item>
-                            <Card style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%", }}>
+                            <Card key={index} style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%", }}>
                                 <Row>
                                     <Col style={{ textAlign: 'left' }} span={12}>
                                         <p>{item.name}</p>
                                     </Col>
                                     <Col style={{ textAlign: 'right' }} span={12}>
-                                        <button  className='icon'
-                                            disabled={false} onClick={() => handleClick(item.id)}>
-                                            <CheckOutlined/>
+                                        <button className='icon'
+                                            disabled={false} onClick={() => handleClick(item)}>
+                                            <CheckOutlined />
                                         </button>
                                         <button className='icon'
-                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
-                                            <EditOutlined/>
+                                            disabled={item.state} onClick={() => handleRemoveTask(item.id)}>
+                                            <EditOutlined />
                                         </button>
                                         <button className='icon'
-                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
-                                            <DeleteOutlined/>
+                                            disabled={item.state} onClick={() => handleRemoveTask(item.id)}>
+                                            <DeleteOutlined />
                                         </button>
 
 

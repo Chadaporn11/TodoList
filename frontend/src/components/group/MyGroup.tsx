@@ -33,6 +33,7 @@ const MyGroup = () => {
             .then((res) => {
                 if (res) {
                     setGroup(res);
+                    console.log(res);
                 }
             });
 

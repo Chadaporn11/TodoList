@@ -7,4 +7,5 @@ export class UpdateTaskDto extends PartialType(CreateTaskDto) {
   name?: string;
   userId?: number;
   groupId?: number;
+  state?: boolean;
 }

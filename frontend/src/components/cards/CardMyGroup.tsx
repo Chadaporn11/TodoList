@@ -9,6 +9,7 @@ import { deleteGroup, grouplistbyId, searchbyid } from '../functions/group';
 import { Card, List } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
+import { group } from 'console';
 type CardMyGroupProps = {
     searchGroup: Partial<GroupInterface>
 }
@@ -40,6 +41,7 @@ const CardMyGroup = (props: CardMyGroupProps) => {
             .then((response) => response.json())
             .then((res) => {
                 setGroup(res)
+                console.log(res)
             }).catch((err) => {
                 console.log(err)
             });
@@ -86,6 +88,9 @@ const CardMyGroup = (props: CardMyGroupProps) => {
             });
 
     }
+    let x = Group.map((x) => x.tasks.name)
+    console.log(x,"xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
 
     return (
         <>
@@ -104,7 +109,7 @@ const CardMyGroup = (props: CardMyGroupProps) => {
                                             <h3>{item.name}</h3>
                                         </div>
                                         <div className='card-title'>
-                                            <p>{}</p>
+                                            <p>12</p>
                                         </div>
                                     </Link>
                                 </Card>

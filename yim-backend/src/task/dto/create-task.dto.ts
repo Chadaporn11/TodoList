@@ -7,8 +7,10 @@ export class CreateTaskDto {
   id: number;
   @IsNotEmpty()
   name: string;
+  state: boolean;
   userId: number;
   groupId: number;
   user: User;
   group: Group;
+  
 }
