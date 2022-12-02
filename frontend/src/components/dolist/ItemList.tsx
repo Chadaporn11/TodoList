@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ItemList.css'
 //function
 import { deleteTask } from '../functions/task';
 //models
 import { TaskInterface } from '../../models/ITask';
 //ant design
-import { Col, Row, Card, List } from 'antd';
+import { Col, Row, Card, List, MenuProps } from 'antd';
 import { CheckOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 type ItemListProps = {
     task: TaskInterface[]
-    loadData: ()=> void
+    loadData: () => void
 }
 
 const ItemList = (props: ItemListProps) => {
-    console.log('props', props)
+    // console.log('props', props)
+
+    const [state, setstate] = React.useState(true)
+
+    const handleClick = (tid: number) => {
+        console.log('click',tid)
+        console.log('The link was clicked.');
+        setstate(!state)
+        console.log(state,tid)
+    }
+
     const handleRemoveTask = (tid: number) => {
         console.log('tid', tid)
         const token = localStorage.getItem('access_token')
@@ -28,14 +38,24 @@ const ItemList = (props: ItemListProps) => {
                 console.log(err);
             })
     }
-    const handleEditTask = (item:any) => {
-        const name:string = item.name;
-        const id:string = item.id;
-        console.log('item',item)
-        localStorage.setItem('editTaskId',id)
-        localStorage.setItem('editTaskname',name)
+
+    const handleEditTask = (item: any) => {
+        const name: string = item.name;
+        const id: string = item.id;
+        // console.log('item',item)
+        localStorage.setItem('editTaskId', id)
+        localStorage.setItem('editTaskname', name)
 
     }
+
+
+
+
+
+    useEffect(() => {
+
+    }, [])
+
     return (
         <>
             <Card style={{ width: 800 }}>
@@ -53,10 +73,20 @@ const ItemList = (props: ItemListProps) => {
                                         <p>{item.name}</p>
                                     </Col>
                                     <Col style={{ textAlign: 'right' }} span={12}>
+                                        <button  className='icon'
+                                            disabled={false} onClick={() => handleClick(item.id)}>
+                                            <CheckOutlined/>
+                                        </button>
+                                        <button className='icon'
+                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
+                                            <EditOutlined/>
+                                        </button>
+                                        <button className='icon'
+                                            disabled={state} onClick={() => handleRemoveTask(item.id)}>
+                                            <DeleteOutlined/>
+                                        </button>
 
-                                        <CheckOutlined className='icon'/>
-                                        <EditOutlined className='icon' onClick={()=> handleEditTask(item)}/>
-                                        <DeleteOutlined onClick={() => handleRemoveTask(item.id)} />
+
 
                                     </Col>
                                 </Row>

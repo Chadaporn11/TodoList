@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-/* input {
+.input {
     margin-top: 5%;
     position: relative;
     display: inline-block;
@@ -28,9 +28,15 @@
     transition: .5%;
     margin-bottom: 5%;
     margin-right: 2%;
+    background: rgb(154, 170, 197);
+    width: 700px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 25px 25px 25px 25px;
 }
 
-input[type=text] {
+/* .input[type=text] {
     background: rgb(154, 170, 197);
     width: 700px;
     height: 30px;
