@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import CardMyGroup from '../cards/CardMyGroup';
 import './MyGroup.css';
 //ant design
-import { Form, Input, Row, Button, Card, AutoComplete } from 'antd';
+import { Form, Input} from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { GroupInterface } from '../../models/IGroup';
-import { getgroup, listbyId } from '../functions/group';
+import { grouplistbyId } from '../functions/group';
 const MyGroup = () => {
     
     const [Group, setGroup] = React.useState<GroupInterface[]>([]);
@@ -13,7 +13,7 @@ const MyGroup = () => {
     const userId = localStorage.getItem('user');
     useEffect(() => {
 
-        listbyId(userId)
+        grouplistbyId(userId)
             .then((response) => response.json())
             .then((res) => {    
                 if (res) {
