@@ -7,7 +7,7 @@ import { GroupInterface } from '../../models/IGroup';
 import { deleteGroup, grouplistbyId } from '../functions/group';
 //ant design
 import { Card, List } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
 
 const CardMyGroup = () => {
