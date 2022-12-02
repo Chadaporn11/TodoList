@@ -1,7 +1,8 @@
 .userlist-container{
     display: flex;
-    width: 1160px;
+    min-width: 85vw;
     flex-direction: column;
+    border: 2px solid blue;
 }
 .userlist-header{
     display: flex;
