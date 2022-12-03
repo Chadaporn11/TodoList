@@ -21,23 +21,23 @@ const MyGroup = () => {
     };
     console.log('chang',searchGroup)
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        loadData()
+    //     loadData()
 
 
-    }, []);
-    const loadData = () => {
-        grouplistbyId(userId)
-            .then((response) => response.json())
-            .then((res) => {
-                if (res) {
-                    setGroup(res);
-                    console.log(res);
-                }
-            });
+    // }, []);
+    // const loadData = () => {
+    //     grouplistbyId(userId)
+    //         .then((response) => response.json())
+    //         .then((res) => {
+    //             if (res) {
+    //                 setGroup(res);
+    //                 console.log(res);
+    //             }
+    //         });
 
-    }
+    // }
 
     return (
         <div className='mygroup-container'>

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Menubar.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { Layout, MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
+import Sider from 'antd/es/layout/Sider';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -53,7 +54,10 @@ const Menubar = () => {
 
         }
     };
+
+
     return (
+
         <div className='menubar-container'>
             <div className='menubar-img'>
                 <Avatar
@@ -79,26 +83,6 @@ const Menubar = () => {
                             mode="inline"
                             items={itemsadmin}
                         />}
-
-
-                </div>
-            </div>
-            <div className='menubar-itemend'>
-                <div className='item'>
-                    <Menu
-                        onClick={onClick}
-                        style={{ backgroundColor: '#063970', color: 'white', float: 'inline-end' }}
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
-                        mode="inline"
-                        items={itemsend}
-                    />
-
-                </div>
-            </div>
-
-
-        </div>
 
     )
 }
