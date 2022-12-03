@@ -27,13 +27,13 @@ const ItemList = (props: ItemListProps) => {
     //const [states, setstates] = useState<Partial<TaskInterface>>({});
 
     const handleClick = (item: TaskInterface) => {
-        const data = [{
+        const data = {
             id: item.id,
             name: item.name,
             userId: typeof userid ==="string" ? parseInt(userid):0,
             groupId: typeof groupid ==="string" ? parseInt(groupid):0,
             state: !item.state,
-        }]
+        }
         updateTask(data)
             .then((response) => response.json())
             .then((res) => {

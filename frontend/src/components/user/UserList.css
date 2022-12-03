@@ -2,7 +2,7 @@
     display: flex;
     min-width: 85vw;
     flex-direction: column;
-    border: 2px solid blue;
+
 }
 .userlist-header{
     display: flex;
