@@ -42,9 +42,11 @@ export const getTaskGroupByGid = async (groupId: any) => {
 
   }
 
+
   export const updateTask = async (data:any) => {
     console.log('updateTask',data)
     const apiUrl = "http://localhost:5000/task/updateTask/"+data.id;
+
     const requestOptionsPost = {
       method: "PATCH",
       headers: {
@@ -53,6 +55,5 @@ export const getTaskGroupByGid = async (groupId: any) => {
       },
       body: JSON.stringify(data),
     };
-
     return await fetch(apiUrl, requestOptionsPost)
   }

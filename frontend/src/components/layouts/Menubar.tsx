@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Menubar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import { Layout, MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
@@ -24,7 +24,12 @@ function getItem(
     } as MenuItem;
 }
 
-const itemstop: MenuProps['items'] = [
+const itemsuser: MenuProps['items'] = [
+
+    getItem(<Link to='/'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
+];
+const itemsadmin: MenuProps['items'] = [
+
     getItem(<Link to='/'>My ToDo List</Link>, 'mytodolist', <PieChartOutlined />),
     getItem(<Link to='/user-list'>User</Link>, 'user', <UserOutlined />),
 ];
@@ -35,94 +40,49 @@ const itemsend: MenuProps['items'] = [
 const Menubar = () => {
 
     const navigate = useNavigate();
+    const loacation = useLocation();
+
+    const roles = localStorage.getItem('roles')
+
 
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e.key);
         if (e.key === 'logout') {
-            window.location.reload()
-            navigate('/login')
+            navigate('/')
             localStorage.clear();
+            window.location.reload()
+
         }
     };
 
 
     return (
 
-        <Layout hasSider>
-            <Sider
-                style={{
-                    overflow: 'auto',
-                    height: '100vh',
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                }}
-            >
-                <div className='menubar-img'>
-                    <Avatar
-                        size={120}
-                        icon={<UserOutlined />} />
-                </div >
-                <Menu onClick={onClick}
-                    style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    items={itemstop} />
-                <div className='menubar-itemend'>
-                    <div className='item'>
-                        <Menu
+        <div className='menubar-container'>
+            <div className='menubar-img'>
+                <Avatar
+                    size={120}
+                    icon={<UserOutlined />} />
+            </div >
+            <div className='menubar-itemtop'>
+                <div className='item'>
+                    {roles === 'user'
+                        ? <Menu
                             onClick={onClick}
-                            style={{ backgroundColor: '#063970', color: 'white', float: 'inline-end' }}
+                            style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
                             defaultSelectedKeys={['1']}
                             defaultOpenKeys={['sub1']}
                             mode="inline"
-                            items={itemsend}
+                            items={itemsuser}
                         />
-
-                    </div>
-                </div>
-            </Sider>
-            <Layout className="site-layout" style={{ marginLeft: 200 }}>
-
-            </Layout>
-        </Layout>
-        // <div className='menubar-container'>
-        // <div className='menubar-img'>
-        //     <Avatar
-        //         size={120}
-        //         icon={<UserOutlined />} />
-        // </div >
-        //     <div className='menubar-itemtop'>
-        //         <div className='item'>
-        //             <Menu
-        // onClick={onClick}
-        // style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
-        // defaultSelectedKeys={['1']}
-        // defaultOpenKeys={['sub1']}
-        // mode="inline"
-        // items={itemstop}
-        //             />
-
-        //         </div>
-        //     </div>
-        // <div className='menubar-itemend'>
-        //     <div className='item'>
-        //         <Menu
-        //             onClick={onClick}
-        //             style={{ backgroundColor: '#063970', color: 'white', float: 'inline-end' }}
-        //             defaultSelectedKeys={['1']}
-        //             defaultOpenKeys={['sub1']}
-        //             mode="inline"
-        //             items={itemsend}
-        //         />
-
-        //     </div>
-        // </div>
-
-
-        // </div>
+                        : <Menu
+                            onClick={onClick}
+                            style={{ backgroundColor: '#063970', color: 'white', float: 'inline-start' }}
+                            defaultSelectedKeys={['1']}
+                            defaultOpenKeys={['sub1']}
+                            mode="inline"
+                            items={itemsadmin}
+                        />}
 
     )
 }
