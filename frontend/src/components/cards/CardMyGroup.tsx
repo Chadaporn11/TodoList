@@ -41,10 +41,10 @@ const CardMyGroup = (props: CardMyGroupProps) => {
 
 
     console.log('group list', Group)
-    useEffect(() => {
-        loadData()
+    // useEffect(() => {
+    //     loadData()
 
-    }, []);
+    // }, []);
 
 
     //search
@@ -59,7 +59,7 @@ const CardMyGroup = (props: CardMyGroupProps) => {
             if (!text) {
                 loadData();
             }
-        }, 300)
+        },)
         // console.log(delay,'delayyyyyyyyy')
         return () => clearTimeout(delay)
         

@@ -21,6 +21,7 @@ const MyGroup = () => {
     };
     console.log('chang',searchGroup)
 
+
     useEffect(() => {
         loadData()
     }, []);
@@ -36,6 +37,7 @@ const MyGroup = () => {
                 }
             });
     }
+
 
     return (
         <div className='mygroup-container'>

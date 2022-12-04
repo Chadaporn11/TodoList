@@ -27,6 +27,7 @@ const ItemList = (props: ItemListProps) => {
     //const [states, setstates] = useState<Partial<TaskInterface>>({});
 
     const handleClick = (item: TaskInterface) => {
+
         console.log('item click', item)
         const { id, name, state } = item
         const data = {
