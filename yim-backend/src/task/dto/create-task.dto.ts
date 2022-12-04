@@ -5,7 +5,6 @@ import { User } from 'src/users/entities/user.entity';
 
 export class CreateTaskDto {
   id: number;
-  @IsNotEmpty()
   name: string;
   state: boolean;
   userId: number;
