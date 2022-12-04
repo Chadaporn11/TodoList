@@ -25,15 +25,9 @@ const ItemList = (props: ItemListProps) => {
     const [addTask, setaddTask] = useState<Partial<TaskInterface>>({});
     const [editTask, setEditTask] = useState<Partial<TaskInterface>>({});
     const [status, setStatus] = useState(false);
-    console.log('check', editTask, addTask)
-
-    // console.log('props', props)
-
-    // const [state, setstate] = React.useState()
-    //const [states, setstates] = useState<Partial<TaskInterface>>({});
 
     const handleClick = (item: TaskInterface) => {
-        const { id, name, state } = item
+        const { id, state } = item
         const data = {
             id: id,
             state: !state,
@@ -41,7 +35,7 @@ const ItemList = (props: ItemListProps) => {
         updateTask(data)
             .then((response) => response.json())
             .then((res) => {
-                console.log('data', res)
+                console.log(res)
                 loadData()
             }).catch((err) => {
                 console.log(err)
@@ -55,7 +49,7 @@ const ItemList = (props: ItemListProps) => {
         deleteTask(token, tid)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res, 'ressssssssssssssss')
+                console.log(res.msg)
                 loadData()
             }).catch((err) => {
                 console.log(err);
@@ -116,6 +110,7 @@ const ItemList = (props: ItemListProps) => {
                     setStatus(false)
                     console.log('dataeditupdate', res)
                     loadData()
+                    ClearForm()
                 }).catch((err) => {
                     console.log(err)
                 })
@@ -127,6 +122,8 @@ const ItemList = (props: ItemListProps) => {
                 .then((res) => {
                     loadData()
                     console.log(res)
+                    ClearForm()
+
                 }).catch((err) => {
                     console.log(err)
                 })
@@ -134,6 +131,10 @@ const ItemList = (props: ItemListProps) => {
 
     }
 
+    const ClearForm = () => {
+        setEditTask({});
+        setaddTask({});
+    };
 
     useEffect(() => {
         loadData()
@@ -145,13 +146,13 @@ const ItemList = (props: ItemListProps) => {
             {status === false
                 ? <input className='input'
                     id="name"
-                    value={addTask.name}
+                    value={addTask.name || ''}
                     type="text"
                     onChange={handleInputChange}>
                 </input>
                 : <input className='input'
                     id="name"
-                    value={editTask.name}
+                    value={editTask.name || ''}
                     type="text"
                     onChange={handleInputEditChange}>
                 </input>}
