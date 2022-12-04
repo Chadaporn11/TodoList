@@ -159,7 +159,7 @@ const ItemList = (props: ItemListProps) => {
             <Button type="primary" size={'large'} onClick={handleSubmit}>
                 Save
             </Button>
-            <Card style={{ width: 800 }}>
+            <Card style={{ width: 850 }}>
                 <List
                     grid={{
                         lg: 0

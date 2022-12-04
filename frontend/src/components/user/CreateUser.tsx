@@ -126,7 +126,7 @@ const CreateUser = () => {
 
             <Row>
                 <Col style={{ marginLeft: "4%", marginTop: "5%" }} xs={4} sm={6} md={8} lg={10} xl={12}>
-                    <h3>Add User</h3>
+                    <h3 className='title'>Add User</h3>
                 </Col>
             </Row>
             <div className='container-from'>

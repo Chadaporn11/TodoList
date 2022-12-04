@@ -1,9 +1,4 @@
-.menubar-container {
-    margin-top: 0;
-    width: 200px;
-    min-height: 100vh;
-    background-color: #063970;
-}
+
 
 .menubar-img {
     margin-top: 30px;
@@ -13,8 +8,12 @@
 
 }
 
-.menubar-itemtop {
+
+
+
+.StyledMenuContainer  {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 154px);
 }

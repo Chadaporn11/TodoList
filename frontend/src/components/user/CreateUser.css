@@ -31,3 +31,9 @@
     display: flex;
 
 }
+
+.title{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #063970;
+}
