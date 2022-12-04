@@ -100,11 +100,14 @@ const Menubar = () => {
                 }}
             >
                 <div className='menubar-img'>
-
-                    <Image
-                        width={150}
-                        src={Users}
-                    />
+                    {!Users
+                        ? <Avatar
+                            size={140}
+                            icon={<UserOutlined />} />
+                        : <Avatar
+                            size={140}
+                            src={Users} />
+                    }
                 </div >
                 {roles === 'user'
                     ? <Menu

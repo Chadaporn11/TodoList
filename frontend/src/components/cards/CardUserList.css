@@ -1,4 +1,19 @@
+.card-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.username{
+    display: flex;
+    font-size: 20px;
 
+}
+.address{
+    display: flex;
+    font-size: 13px;
+    color: #000;
+
+}
 .card-action{
     display: flex;
     justify-content: space-evenly;
