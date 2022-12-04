@@ -22,12 +22,11 @@ const MyGroup = () => {
     console.log('chang',searchGroup)
 
     useEffect(() => {
-
         loadData()
-
-
     }, []);
+    
     const loadData = () => {
+
         grouplistbyId(userId)
             .then((response) => response.json())
             .then((res) => {
@@ -36,7 +35,6 @@ const MyGroup = () => {
                     console.log(res);
                 }
             });
-
     }
 
     return (
@@ -61,7 +59,7 @@ const MyGroup = () => {
                 <h2 className='title'>My Group</h2>
             </div>
 
-            <CardMyGroup searchGroup={searchGroup} />
+            <CardMyGroup searchGroup={searchGroup} setGroup={setGroup} Group={Group} loadData={loadData}/>
 
 
 

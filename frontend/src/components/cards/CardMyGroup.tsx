@@ -12,13 +12,17 @@ import { Col, Row } from 'antd';
 import { group } from 'console';
 type CardMyGroupProps = {
     searchGroup: Partial<GroupInterface>
+    Group: GroupInterface[]
+    setGroup: React.Dispatch<React.SetStateAction<GroupInterface[]>>
+    loadData: () => void
+    
 }
 
 const CardMyGroup = (props: CardMyGroupProps) => {
-    const { searchGroup } = props;
-    const [Group, setGroup] = React.useState<GroupInterface[]>([]);
+    const { searchGroup, setGroup, Group, loadData } = props;
     const userId = localStorage.getItem('user');
     const text = searchGroup.name
+    
 
 
     const handleRemoveGroup = (gid: number) => {
@@ -31,20 +35,6 @@ const CardMyGroup = (props: CardMyGroupProps) => {
             }).catch((err) => {
                 console.log(err)
             })
-
-    }
-
-    const loadData = () => {
-
-        const uid = localStorage.getItem('user');
-        grouplistbyId(uid)
-            .then((response) => response.json())
-            .then((res) => {
-                setGroup(res)
-                console.log(res)
-            }).catch((err) => {
-                console.log(err)
-            });
 
     }
 
