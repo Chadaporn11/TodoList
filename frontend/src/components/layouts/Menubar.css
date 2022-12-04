@@ -15,5 +15,5 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100% - 154px);
+    height: calc(100% - 200px);
 }

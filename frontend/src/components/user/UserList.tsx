@@ -10,14 +10,15 @@ import {  PlusOutlined } from '@ant-design/icons';
 const UserList = () => {
     return (
         <div className='userlist-container'>
-            <Row>
+   
+
                 <div className='userlist-header'>
                     <div className='userlist-title'>
                         <h2 className='title'>User</h2>
                     </div>
                     <div className='userlist-button'>
                         <Link to='/create-user'>
-                            <Button
+                            <Button style={{height:'40px',width:'200px',textAlign:'left'}} 
                                 type="primary"
                                 block>
                                 <PlusOutlined /> Add User
@@ -27,8 +28,8 @@ const UserList = () => {
 
                     </div>
                 </div>
-
-            </Row>
+          
+      
             <Row>
                 <div className='userlist-card'>
                     <CardUserList />

@@ -54,6 +54,7 @@ const SignIn = () => {
 
     return (
 
+      <>
         <div className='Auth-form-container'>
             <div className='Auth-form-content'>
                 <h3 className='Auth-form-title'>LOGIN</h3>
@@ -85,6 +86,8 @@ const SignIn = () => {
                 </Form>
             </div>
         </div>
+       
+        </>
 
     );
 }
