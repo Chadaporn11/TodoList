@@ -8,7 +8,7 @@ import { userInterface } from '../../models/IUser';
 
 //ant design
 import { Card, Row, Col, List } from 'antd';
-import { EditOutlined, DeleteOutlined,UserAddOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined,UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 
 const CardUserList = () => {
@@ -78,22 +78,23 @@ const CardUserList = () => {
 
                                     <Col span={3}>
                                         <div className='card-img'>
-                                            {item.img === null || item.img === "string"
-                                                ? <UserAddOutlined />
-                                                : <img src={item.img} alt="avatar" style={{ width: '90%' ,marginRight: '2%'}} />
+                                            {item.img === "" || item.img === "string"
+                                                ? <Avatar shape="square" size={90} icon={<UserOutlined />} />
+                                                // : <img src={item.img} alt="avatar" style={{ width: '90%' ,marginRight: '2%'}} />
+                                                :<Avatar shape="square" size={90} src={item.img} />
                                             }
                                         </div>
                                     </Col>
 
                                     <Col span={10}>
                                         <div className='card-name'>
-                                            <h3>{item.username}</h3>
+                                            <h3 className='username'>{item.username}</h3>
                                         </div>
                                     </Col>
 
                                     <Col span={7}>
                                         <div className='card-title'>
-                                            <p>{item.address}</p>
+                                            <p className='address'>{item.address}</p>
                                         </div>
                                     </Col>
 
