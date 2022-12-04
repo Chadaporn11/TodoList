@@ -12,19 +12,19 @@ import { createTask } from '../functions/task';
 const TodoList = () => {
     const params = useParams();
     const [task, setTask] = useState<TaskInterface[]>([]);
-    const [addTask, setaddTask] = useState<Partial<TaskInterface>>({});
-    const editTaskname = localStorage.getItem('editTaskname');
-    const editTaskId = localStorage.getItem('editTaskId');
+    // const [addTask, setaddTask] = useState<Partial<TaskInterface>>({});
+    // const editTaskname = localStorage.getItem('editTaskname');
+    // const editTaskId = localStorage.getItem('editTaskId');
     const userid = localStorage.getItem('user') ;
 
-    const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
-        const name = event.target.id as keyof typeof addTask;
-        const { value } = event.target;
-        setaddTask({
-            ...addTask,
-            [name]: value,
-        });
-    }
+    // const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
+    //     const name = event.target.id as keyof typeof addTask;
+    //     const { value } = event.target;
+    //     setaddTask({
+    //         ...addTask,
+    //         [name]: value,
+    //     });
+    // }
 
     // console.log('params', params);
     const loadData = () => {
@@ -41,23 +41,23 @@ const TodoList = () => {
 
 
         
-    const handleSubmit = () => {
-        let data = {
-            name: addTask.name,
-            userId: typeof userid ==="string" ? parseInt(userid):0 ,
-            groupId: params.id,
-            state: true,
-            // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
-        }
-        createTask(data)
-            .then((response) => response.json())
-            .then((res) => {
-                loadData()
-                console.log(res)
-            }).catch((err) => {
-                console.log(err)
-            })
-    }
+    // const handleSubmit = () => {
+    //     let data = {
+    //         name: addTask.name,
+    //         userId: typeof userid ==="string" ? parseInt(userid):0 ,
+    //         groupId: params.id,
+    //         state: true,
+    //         // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
+    //     }
+    //     createTask(data)
+    //         .then((response) => response.json())
+    //         .then((res) => {
+    //             loadData()
+    //             console.log(res)
+    //         }).catch((err) => {
+    //             console.log(err)
+    //         })
+    // }
 
 
 
@@ -84,7 +84,7 @@ const TodoList = () => {
                 <div>
                     <h3>To Do List</h3>
                     <div className='item-save'>
-                        {!editTaskname || !editTaskId
+                        {/* {!editTaskname || !editTaskId
                             ? <input className='input'
                                 id="name"
                                 value={addTask.name}
@@ -100,7 +100,7 @@ const TodoList = () => {
 
                         <Button type="primary" size={'large'} onClick={handleSubmit}>
                             Save
-                        </Button>
+                        </Button> */}
 
                         <ItemList task={task} loadData={loadData} setTask={setTask} />
 
