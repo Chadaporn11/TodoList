@@ -10,6 +10,7 @@ import { userInterface } from '../../models/IUser';
 import { Image } from 'antd';
 
 
+
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -77,6 +78,7 @@ const Menubar = () => {
             });
     };
 
+
     useEffect(() => {
         loadData();
 
@@ -109,6 +111,8 @@ const Menubar = () => {
                             src={Users} />
                     }
                 </div >
+
+                <div className='StyledMenuContainer'>
                 {roles === 'user'
                     ? <Menu
                         onClick={onClick}
@@ -126,7 +130,7 @@ const Menubar = () => {
                         mode="inline"
                         items={itemsadmin}
                     />}
-                <Menu
+                <Menu 
                     onClick={onClick}
                     style={{ backgroundColor: '#063970', color: 'white', float: 'inline-end' }}
                     defaultSelectedKeys={['1']}
@@ -134,6 +138,7 @@ const Menubar = () => {
                     mode="inline"
                     items={itemsend}
                 />
+                </div>
 
 
 
@@ -182,6 +187,8 @@ const Menubar = () => {
 // }
 
 export default Menubar;
+
+
 
 
 

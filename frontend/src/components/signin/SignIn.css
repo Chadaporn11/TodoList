@@ -15,21 +15,21 @@
 .Auth-form-title {
     text-align: center;
     margin-bottom: 1em;
-    font-size: 24px;
-    color: rgb(93, 27, 216);
-    font-weight: 800;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #063970;
   }
 
 .Auth-form-subtitle {
     text-align: center;
     margin-bottom: 1em;
     font-size: 10px;
-    color: rgb(88, 10, 233);
+    color: rgb(15, 110, 199);
   }
 
 p {
     font-size: 10px;
-    color: rgb(73, 6, 217);
+    color: rgb(11, 86, 156);
   }
 .button-center {
     margin: 0;
@@ -37,4 +37,5 @@ p {
     top: 0%;
     left: 30%;
 }
+
 
