@@ -27,17 +27,21 @@ const ItemList = (props: ItemListProps) => {
     //const [states, setstates] = useState<Partial<TaskInterface>>({});
 
     const handleClick = (item: TaskInterface) => {
+
+        console.log('item click', item)
+        const { id, name, state } = item
         const data = {
-            id: item.id,
-            name: item.name,
+            id: id,
+            name: name,
             userId: typeof userid ==="string" ? parseInt(userid):0,
             groupId: typeof groupid ==="string" ? parseInt(groupid):0,
-            state: !item.state,
+            state: !state,
         }
         updateTask(data)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res)
+                console.log('data', res)
+                loadData()
 
             }).catch((err) => {
                 console.log(err)
@@ -46,7 +50,7 @@ const ItemList = (props: ItemListProps) => {
 
     }
 
-    console.log(task, 'teskkkkkkkkkkkkkkkkkkkkkk')
+    // console.log(task, 'teskkkkkkkkkkkkkkkkkkkkkk')
 
     const handleRemoveTask = (tid: number) => {
         console.log('tid', tid)
@@ -56,7 +60,7 @@ const ItemList = (props: ItemListProps) => {
             .then((res) => {
                 console.log(res, 'ressssssssssssssss')
                 //window.location.reload()
-                props.loadData()
+                loadData()
 
             }).catch((err) => {
                 console.log(err);
@@ -73,10 +77,8 @@ const ItemList = (props: ItemListProps) => {
     }
 
 
-
-
-
     useEffect(() => {
+        loadData()
 
     }, [])
 

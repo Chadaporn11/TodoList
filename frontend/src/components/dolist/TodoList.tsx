@@ -26,7 +26,7 @@ const TodoList = () => {
         });
     }
 
-    console.log('params', params);
+    // console.log('params', params);
     const loadData = () => {
         getTaskGroupByGid(params.id)
             .then((response) => response.json())
@@ -37,7 +37,7 @@ const TodoList = () => {
                 console.log(err.response.data);
             })
     }
-    console.log('task', task)
+    // console.log('task', task)
 
 
         

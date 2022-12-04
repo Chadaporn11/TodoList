@@ -37,7 +37,7 @@ function App() {
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <BrowserRouter>
         <Menubar />
-        {role === 'Admin'
+        {role === 'admin'
           ?
           <>
             <Routes>

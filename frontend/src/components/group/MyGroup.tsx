@@ -21,23 +21,23 @@ const MyGroup = () => {
     };
     console.log('chang',searchGroup)
 
-    // useEffect(() => {
 
-    //     loadData()
+    useEffect(() => {
+        loadData()
+    }, []);
+    
+    const loadData = () => {
 
+        grouplistbyId(userId)
+            .then((response) => response.json())
+            .then((res) => {
+                if (res) {
+                    setGroup(res);
+                    console.log(res);
+                }
+            });
+    }
 
-    // }, []);
-    // const loadData = () => {
-    //     grouplistbyId(userId)
-    //         .then((response) => response.json())
-    //         .then((res) => {
-    //             if (res) {
-    //                 setGroup(res);
-    //                 console.log(res);
-    //             }
-    //         });
-
-    // }
 
     return (
         <div className='mygroup-container'>
@@ -61,7 +61,7 @@ const MyGroup = () => {
                 <h2 className='title'>My Group</h2>
             </div>
 
-            <CardMyGroup searchGroup={searchGroup} />
+            <CardMyGroup searchGroup={searchGroup} setGroup={setGroup} Group={Group} loadData={loadData}/>
 
 
 

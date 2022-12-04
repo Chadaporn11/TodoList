@@ -43,8 +43,9 @@ export const getTaskGroupByGid = async (groupId: any) => {
   }
 
 
-  export const updateTask = async (data:any) => {
-    console.log('updateTask',data)
+  export const updateTask = async (data:any)=> {
+    const { state } = data;
+    console.log('updateTask',data,state)
     const apiUrl = "http://localhost:5000/task/updateTask/"+data.id;
 
     const requestOptionsPost = {

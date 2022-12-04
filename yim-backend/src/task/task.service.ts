@@ -52,7 +52,7 @@ export class TaskService {
       const data = await this.findOne(id);
       const { name, state } = updateTaskDto;
       if (name) data.name = name;
-      if (state) data.state = state;
+      data.state = state;
       return await this.taskRepo.save(data);
     } catch (error) {
       throw new HttpException('Cannot Updata Task.',HttpStatus.BAD_REQUEST);
