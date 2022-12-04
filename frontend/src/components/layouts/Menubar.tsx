@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Menubar.css';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import { Layout, MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
 import Sider from 'antd/es/layout/Sider';
+import { getUser, getUserlist } from '../functions/user';
+import { userInterface } from '../../models/IUser';
+import { Image } from 'antd';
+
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -42,11 +46,14 @@ const Menubar = () => {
     const navigate = useNavigate();
     const loacation = useLocation();
 
+    const [Users, setUsers] = useState('')
+
     const roles = localStorage.getItem('roles')
 
 
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e.key);
+        console.log("useridddddddddddddddddd", Users)
         if (e.key === 'logout') {
             navigate('/')
             localStorage.clear();
@@ -54,6 +61,28 @@ const Menubar = () => {
 
         }
     };
+
+    const loadData = async () => {
+        const token = localStorage.getItem('access_token')
+        const userid = localStorage.getItem('user')
+        getUser(token, userid)
+            .then((response) => response.json())
+            .then((res) => {
+                if (res) {
+                    setUsers(res.img);
+
+                } else {
+                    console.log('else')
+                }
+            });
+    };
+
+    useEffect(() => {
+        loadData();
+
+    }, []);
+
+
 
 
     return (
@@ -71,9 +100,11 @@ const Menubar = () => {
                 }}
             >
                 <div className='menubar-img'>
-                    <Avatar
-                        size={120}
-                        icon={<UserOutlined />} />
+
+                    <Image
+                        width={150}
+                        src={Users}
+                    />
                 </div >
                 {roles === 'user'
                     ? <Menu

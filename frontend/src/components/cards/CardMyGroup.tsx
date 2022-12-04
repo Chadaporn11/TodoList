@@ -38,13 +38,7 @@ const CardMyGroup = (props: CardMyGroupProps) => {
 
     }
 
-
-
     console.log('group list', Group)
-    // useEffect(() => {
-    //     loadData()
-
-    // }, []);
 
 
     //search
@@ -52,18 +46,11 @@ const CardMyGroup = (props: CardMyGroupProps) => {
 
         const delay = setTimeout(() => {
             fetchDataFilter(text);
-            let data = text
-            console.log(data)
-            // console.log('length',data.length)
-
             if (!text) {
                 loadData();
             }
         },)
-        // console.log(delay,'delayyyyyyyyy')
         return () => clearTimeout(delay)
-        
-
     }, [text]);
 
     //Filter
@@ -78,9 +65,6 @@ const CardMyGroup = (props: CardMyGroupProps) => {
             });
 
     }
-    let x = Group.map((x) => x.tasks.name)
-    console.log(x,"xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
 
     return (
         <>
@@ -99,7 +83,7 @@ const CardMyGroup = (props: CardMyGroupProps) => {
                                             <h3>{item.name}</h3>
                                         </div>
                                         <div className='card-title'>
-                                            <p>12</p>
+                                            <p>{item.tasks.length}</p>
                                         </div>
                                     </Link>
                                 </Card>
