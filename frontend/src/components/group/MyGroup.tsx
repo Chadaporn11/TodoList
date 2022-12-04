@@ -39,11 +39,11 @@ const MyGroup = () => {
             <div className="mygroup-search">
                 <Form>
                     <Form.Item>
-                        <Input
+                        <Input 
                             type="text"
                             name="name"
                             id="name"
-                            placeholder="search"
+                            placeholder="Search"
                             value={searchGroup.name}
                             onChange={handleInputChange}
                             prefix={<SearchOutlined />}

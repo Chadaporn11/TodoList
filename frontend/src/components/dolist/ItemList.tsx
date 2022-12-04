@@ -169,7 +169,7 @@ const ItemList = (props: ItemListProps) => {
                     dataSource={task}
                     renderItem={(item, index) => (
                         <List.Item>
-                            <Card key={index} style={{ backgroundColor: "lightblue", width: 750, marginBottom: "4%", }}>
+                            <Card key={index} style={{ backgroundColor: "#f5f9fd", width: 750, marginBottom: "4%", }}>
                                 <Row>
                                     <Col style={{ textAlign: 'left' }} span={12}>
                                         <p>{item.name}</p>

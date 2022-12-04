@@ -48,13 +48,15 @@
 }
 
 
-/* .container-list{
-    display: flex;
-    position: absolute;
-    justify-content:space-around;
-    justify-items: space-around;
-    margin-top: 40px;
-    margin-left: 40px;
-    flex-direction: row;
+.name-font {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #063970;
+}
 
-} */
+
+.task-font {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1c51c4;
+}

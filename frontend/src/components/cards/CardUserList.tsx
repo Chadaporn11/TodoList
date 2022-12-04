@@ -87,20 +87,20 @@ const CardUserList = () => {
                                     </Col>
 
                                     <Col span={10}>
-                                        <div className='card-name'>
-                                            <h3 className='username'>{item.username}</h3>
-                                        </div>
+                                  
+                                            <p className='username'>{item.username}</p>
+                                 
                                     </Col>
 
                                     <Col span={7}>
-                                        <div className='card-title'>
+                                 
                                             <p className='address'>{item.address}</p>
-                                        </div>
+                                      
                                     </Col>
 
-                                    <Col span={3}>
+                                    <Col span={5}>
                                         <div className='card-action'>
-                                            <EditOutlined onClick={(e) => handleEdit(item)} />
+                                            <EditOutlined style={{marginRight: '10%'}} onClick={(e) => handleEdit(item)} />  
                                             <DeleteOutlined onClick={(e) => handleRemove(item)} />
                                         </div>
                                     </Col>

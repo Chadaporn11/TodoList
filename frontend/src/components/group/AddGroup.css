@@ -4,8 +4,7 @@
     flex-direction: column;
 }
 .addgroup-btn-back{
-    margin-left: 40px;
-    margin-right: 90px;
+    
     display: flex;
     min-width: 75vw;
     height: 90px;
@@ -27,7 +26,6 @@
     color: #063970;
 }
 .addgroup-content{
-    margin-left: 40px;
     display: flex;
     min-width: 80vw;
     flex-direction: row;

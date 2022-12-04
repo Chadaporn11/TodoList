@@ -51,32 +51,6 @@ const AddGroup = () => {
     }
 
 
-
-    // const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
-    //     const name = event.target.id as keyof typeof Group;
-    //     const { value } = event.target;
-    //     setGroup({
-    //         ...Group,
-    //         [name]: value,
-    //     });
-    // }
-
-    // const handleSubmit = () => {
-    //     let data = {
-    //         name: Group.name,
-    //         userID: Group.userID
-    //     }
-    //     creategroup(data)
-    //         .then((response) => response.json())
-    //         .then((res) => {
-    //             console.log(res)
-    //             alert("Add Group Success")
-    //         }).catch((err) => {
-    //             console.log(err)
-    //             alert("Add Group Fail")
-    //         })
-    // }
-
     console.log(Group);
 
     return (

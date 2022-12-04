@@ -28,7 +28,8 @@
     transition: .5%;
     margin-bottom: 5%;
     margin-right: 2%;
-    background: rgb(154, 170, 197);
+    color: rgb(114, 163, 232);
+    background: rgb(245, 249, 253);
     width: 700px;
     height: 30px;
     border: none;
@@ -36,13 +37,9 @@
     border-radius: 25px 25px 25px 25px;
 }
 
-/* .input[type=text] {
-    background: rgb(154, 170, 197);
-    width: 700px;
-    height: 30px;
-    border: none;
-    outline: none;
-    border-radius: 25px 25px 25px 25px;
-
-} */
-
+.font-todo{
+color: rgb(6, 54, 122);
+    font-family: "Work Sans";
+    font-weight: 700;
+    font-size: 22px;
+}

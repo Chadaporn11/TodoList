@@ -80,10 +80,10 @@ const CardMyGroup = (props: CardMyGroupProps) => {
                                     </div>
                                     <Link to={`/todolist/${item.id}`}>
                                         <div className='card-name'>
-                                            <h3>{item.name}</h3>
+                                            <p className='name-font'>{item.name}</p>
                                         </div>
-                                        <div className='card-title'>
-                                            <p>{item.tasks.length}</p>
+                                        <div className='task-title'>
+                                            <p className='task-font'>{item.tasks.length} List</p>
                                         </div>
                                     </Link>
                                 </Card>

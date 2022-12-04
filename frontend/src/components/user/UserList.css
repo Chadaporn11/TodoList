@@ -1,6 +1,6 @@
 .userlist-container{
     display: flex;
-    min-width: 85vw;
+    min-width:90vw;
     flex-direction: column;
 
 }
@@ -23,7 +23,8 @@
     color: #063970;
 }
 .userlist-button{
-    width: 180px;
+    
+    width: 200px;
     display: flex;
     justify-content: end;
     align-items: end;
