@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './AddGroup.css';
+import { toast } from 'react-toastify';
 //models
 import { GroupInterface } from '../../models/IGroup';
 //function
@@ -21,30 +22,25 @@ const AddGroup = () => {
         setGroup({ ...Group, [id]: value });
     };
 
-
-    // console.log(localStorage.getItem("user"))
-
-    function submit() {
+    const Submit = () => {
 
         const user = localStorage.getItem("user");
         let data = {
             name: Group.name,
             userId: user,
         };
-
         console.log(data)
-
         creategroup(data)
             .then((response) => response.json())
             .then((res) => {
                 if (res) {
                     console.log(res)
-                    alert("Add Group Success")
+                    toast.success("Add Group Success")
                     navigate('/')
                     
                 } else {
                     console.log(res)
-                    alert("Add Group fail")
+                    toast.error("Add Group fail")
                 }
             });
 
@@ -81,7 +77,7 @@ const AddGroup = () => {
                             placeholder=" Memes" />
                     </div>
                     <div className="addgroup-content-btn">
-                        <Button onClick={submit} type="primary" block>
+                        <Button onClick={Submit} type="primary" block>
                             Save
                         </Button>
                     </div>

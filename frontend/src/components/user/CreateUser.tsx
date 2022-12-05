@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './CreateUser.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 //models type
 import { userInterface } from '../../models/IUser';
 //function
@@ -94,33 +95,17 @@ const CreateUser = () => {
             createUser(token, data)
                 .then((response) => response.json())
                 .then((res) => {
+                    toast.success(`Create ${res.data.username} Success`);
                     console.log(res)
-                    alert(res.msg)
                     navigate('/user-list')
                 }).catch((err) => {
                     console.log(err)
+                    toast.error(err)
                 })
 
         } else {
-            alert('Password and Confirm Password Failed')
+            toast.error('Password and Confirm Password Failed')
         }
-
-
-        /*const apiUrl = "http://localhost:5000/users/createUser";
-        const requestOptions = {
-            method: "POST",
-            Headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        }
-        fetch(apiUrl, requestOptions)
-
-            .then((response) => response.json())
-            .then((res) => {
-                console.log(res)
-            }).catch((err) => {
-                console.log(err.message)
-            })*/
-
 
     }
     const handleCancel = () => {

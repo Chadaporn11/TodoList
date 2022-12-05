@@ -5,6 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //pages
 import UserList from './components/user/UserList';
 import Menubar from './components/layouts/Menubar';
@@ -36,6 +38,7 @@ function App() {
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <BrowserRouter>
+        <ToastContainer />
         <Menubar />
         {role === 'admin'
           ?
@@ -51,7 +54,7 @@ function App() {
           </>
           : <>
             <Routes>
-            <Route path="/user-list" element={<LoadingToRedirect />} />
+              <Route path="/user-list" element={<LoadingToRedirect />} />
               <Route path="/create-user" element={<LoadingToRedirect />} />
               <Route path="/edit-user/:id" element={<LoadingToRedirect />} />
               <Route path="/todolist/:id" element={<TodoList />} />
