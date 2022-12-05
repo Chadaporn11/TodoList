@@ -1,6 +1,6 @@
 .addgroup-container{
     display: flex;
-    min-width: 85vw;
+    min-width: 90vw;
     flex-direction: column;
 }
 .addgroup-btn-back{
