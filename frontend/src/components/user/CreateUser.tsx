@@ -89,15 +89,23 @@ const CreateUser = () => {
             img: imageUrl,
         }
         const token = localStorage.getItem('access_token')
-        createUser(token, data)
-            .then((response) => response.json())
-            .then((res) => {
-                console.log(res)
-                alert(res.msg)
-                navigate('/user-list')
-            }).catch((err) => {
-                console.log(err)
-            })
+
+        if (user.password === user.confirmpassword) {
+            createUser(token, data)
+                .then((response) => response.json())
+                .then((res) => {
+                    console.log(res)
+                    alert(res.msg)
+                    navigate('/user-list')
+                }).catch((err) => {
+                    console.log(err)
+                })
+
+        } else {
+            alert('Password and Confirm Password Failed')
+        }
+
+
         /*const apiUrl = "http://localhost:5000/users/createUser";
         const requestOptions = {
             method: "POST",
@@ -117,7 +125,7 @@ const CreateUser = () => {
     }
     const handleCancel = () => {
         navigate('/user-list')
-        
+
     }
     console.log(user)
 
@@ -125,10 +133,10 @@ const CreateUser = () => {
         <div className='container'>
 
             <Row>
-            
-                <Col style={{ marginLeft: "4%", marginTop: "5%",fontSize: '30px',color: '#063970'}} xs={4} sm={6} md={8} lg={10} xl={12}>
+
+                <Col style={{ marginLeft: "4%", marginTop: "5%", fontSize: '30px', color: '#063970' }} xs={4} sm={6} md={8} lg={10} xl={12}>
                     <h3>Add User</h3>
-                    
+
                 </Col>
             </Row>
             <div className='container-from'>
@@ -210,7 +218,7 @@ const CreateUser = () => {
                             type="text"
                             name="confirmpassword"
                             id="confirmpassword"
-                            value={user.password}
+                            value={user.confirmpassword}
                             onChange={handleInputChange}
 
                             placeholder="confirmpassword" />
@@ -220,10 +228,10 @@ const CreateUser = () => {
                     <Form.Item>
                         <div className='button-size'>
                             <div className='button-cancel'>
-                                <Button 
-                                type="primary" 
-                                htmlType="submit"
-                                onClick={handleCancel}>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    onClick={handleCancel}>
                                     cancel
                                 </Button>
                             </div>

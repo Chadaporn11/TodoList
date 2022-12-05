@@ -94,7 +94,7 @@ const Menubar = () => {
             <Sider 
                 style={{
                     overflow: 'auto',
-                    height: '100vh',
+                    minHeight: '90vh',
                     position: 'fixed',
                     left: 0,
                     top: 0,
