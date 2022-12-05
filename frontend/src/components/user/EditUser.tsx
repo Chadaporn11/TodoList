@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CreateUser.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 //models type
 import { userInterface } from '../../models/IUser';
 //function
@@ -101,15 +102,16 @@ const EditUser = () => {
                     .then((response) => response.json())
                     .then((res) => {
                         console.log(res)
-                        alert(res.msg)
+                        toast.success(res.msg)
                         localStorage.removeItem('edit_user')
                         navigate('/user-list')
                     }).catch((err) => {
                         console.log(err)
+                        toast.error(err)
                     })
 
             } else {
-                alert('Password and Confirm Password invalid!')
+                toast.error('Password and Confirm Password invalid!')
             }
 
 
@@ -124,10 +126,11 @@ const EditUser = () => {
                 .then((response) => response.json())
                 .then((res) => {
                     console.log(res)
-                    alert(res.msg)
+                    toast.success(res.msg)
                     localStorage.removeItem('edit_user')
                     navigate('/user-list')
                 }).catch((err) => {
+                    toast.error(err)
                     console.log(err)
                 })
 
