@@ -1,9 +1,9 @@
-import { access } from "fs";
 import { userInterface } from "../../models/IUser";
+import { SigninsInterface } from "../../models/ISignIn";
 
-export const login = async (user: Partial<userInterface>) => {
+export const login = async (user: Partial<SigninsInterface>) => {
 
-  const apiUrl = "http://localhost:5000/api/login";
+  const apiUrl = "http://localhost:5000/auth/login";
   const requestOptionsPost = {
     method: "POST",
     headers: { "Content-Type": "application/json" },

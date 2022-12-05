@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Menubar.css';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, LoginOutlined } from '@ant-design/icons';
 import { Layout, MenuProps } from 'antd';
 import { Menu, Avatar } from 'antd';
 import Sider from 'antd/es/layout/Sider';
-import { getUser, getUserlist } from '../functions/user';
-import { userInterface } from '../../models/IUser';
-import { Image } from 'antd';
+import { getUser } from '../functions/user';
 
 
 
@@ -45,7 +43,6 @@ const itemsend: MenuProps['items'] = [
 const Menubar = () => {
 
     const navigate = useNavigate();
-    const loacation = useLocation();
 
     const [Users, setUsers] = useState('')
 

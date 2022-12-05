@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import './CardMyGroup.css';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 //models
 import { GroupInterface } from '../../models/IGroup';
 //functions
-import { deleteGroup, grouplistbyId, searchbyid } from '../functions/group';
+import { deleteGroup, searchbyid } from '../functions/group';
 //ant design
 import { Card, List } from 'antd';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Col, Row } from 'antd';
-import { group } from 'console';
+
 type CardMyGroupProps = {
     searchGroup: Partial<GroupInterface>
     Group: GroupInterface[]
@@ -30,9 +32,11 @@ const CardMyGroup = (props: CardMyGroupProps) => {
         deleteGroup(gid)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res)
+                toast.success('Delete Group Success')
+                console.log('delete',res)
                 loadData()
             }).catch((err) => {
+                toast.error('Delete Group Failed')
                 console.log(err)
             })
 

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import CardMyGroup from '../cards/CardMyGroup';
 import './MyGroup.css';
 //ant design
-import { Button, Form, Input } from 'antd';
+import { Form, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { GroupInterface } from '../../models/IGroup';
-import { grouplistbyId, searchbyid } from '../functions/group';
+import { grouplistbyId } from '../functions/group';
 const MyGroup = () => {
 
     const [Group, setGroup] = useState<GroupInterface[]>([]);
@@ -33,7 +33,6 @@ const MyGroup = () => {
             });
     }
 
-
     return (
         <div className='mygroup-container'>
             <div className="mygroup-search">
@@ -57,10 +56,6 @@ const MyGroup = () => {
             </div>
 
             <CardMyGroup searchGroup={searchGroup} setGroup={setGroup} Group={Group} loadData={loadData}/>
-
-
-
-
 
         </div>
     )

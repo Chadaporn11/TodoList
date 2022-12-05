@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CardUserList.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 //function
 import { getUserlist, removeUser } from '../functions/user';
 //models
@@ -22,13 +23,12 @@ const CardUserList = () => {
         const token = localStorage.getItem('access_token')
         getUserlist(token)
             .then((response) => response.json())
-            .then((res) => {
-                if (res) {
+            .then((res)=> {
                     setUsers(res);
                     console.log(res);
-                } else {
-                    console.log('else')
-                }
+                
+            }).catch((err) => {
+                toast.error(err);
             });
     };
 
@@ -39,10 +39,12 @@ const CardUserList = () => {
         removeUser(token, id)
             .then((response) => response.json())
             .then((res) => {
+                toast.success(`Delete Success`);
                 console.log(res)
                 loadData();
 
             }).catch((err) => {
+                toast.error(err);
                 console.log(err)
 
             })

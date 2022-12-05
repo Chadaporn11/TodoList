@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ItemList.css'
+import { toast } from 'react-toastify';
 //function
-import { deleteTask, updateTask, getTaskGroupByGid, createTask } from '../functions/task';
+import { deleteTask, updateTask, createTask } from '../functions/task';
 
 //models
 import { TaskInterface } from '../../models/ITask';
@@ -42,16 +43,16 @@ const ItemList = (props: ItemListProps) => {
             })
     }
 
-    // console.log(task, 'teskkkkkkkkkkkkkkkkkkkkkk')
-
     const handleRemoveTask = (tid: number) => {
         const token = localStorage.getItem('access_token')
         deleteTask(token, tid)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res.msg)
+                toast.success('Delete Task success')
+                console.log(res)
                 loadData()
             }).catch((err) => {
+                toast.error(err)
                 console.log(err);
             })
     }
@@ -94,24 +95,25 @@ const ItemList = (props: ItemListProps) => {
         let editData = {
             id: editTask.id,
             name: editTask.name,
-            // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
         }
         let addData = {
             name: addTask.name,
             userId: typeof userid === "string" ? parseInt(userid) : 0,
             groupId: params.id,
             state: true,
-            // groupID: typeof params ==="string" ?parseFloat{params}:0 ,
         }
         if (status === true) {
             updateTask(editData)
                 .then((response) => response.json())
                 .then((res) => {
+                    console.log(res)
+                    toast.success(`Update ${res.name} Task success`)
                     setStatus(false)
-                    console.log('dataeditupdate', res)
                     loadData()
                     ClearForm()
+
                 }).catch((err) => {
+                    toast.error(err)
                     console.log(err)
                 })
 
@@ -120,11 +122,13 @@ const ItemList = (props: ItemListProps) => {
             createTask(addData)
                 .then((response) => response.json())
                 .then((res) => {
+                    toast.success(`Create ${res.name} Task Success`)
                     loadData()
                     console.log(res)
                     ClearForm()
 
                 }).catch((err) => {
+                    toast.error(err)
                     console.log(err)
                 })
         }
