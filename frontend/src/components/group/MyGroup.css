@@ -1,6 +1,6 @@
 .mygroup-container{
     display: flex;
-    min-width: 87vw;
+    min-width: 90vw;
     flex-direction: column;
 
 }

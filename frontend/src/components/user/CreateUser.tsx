@@ -178,7 +178,7 @@ const CreateUser = () => {
                             value={user.address}
                             onChange={handleInputChange}
 
-                            placeholder="Email Address" />
+                            placeholder="Address" />
                     </Form.Item>
 
                     <Form.Item
@@ -212,22 +212,20 @@ const CreateUser = () => {
 
                     <Form.Item>
                         <div className='button-size'>
-                            <div className='button-cancel'>
-                                <Button
-                                    type="primary"
-                                    htmlType="submit"
+                   
+                                <Button className='button-cancel'
                                     onClick={handleCancel}>
-                                    cancel
+                                    Cancel
                                 </Button>
-                            </div>
-                            <div className='button-submit'>
-                                <Button
+                 
+                  
+                                <Button className='button-save'
                                     onClick={handleSubmit}
                                     type="primary"
                                     htmlType="submit">
-                                    Submit
+                                    Save
                                 </Button>
-                            </div>
+                   
                         </div>
 
                     </Form.Item>
