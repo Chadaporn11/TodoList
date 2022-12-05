@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CreateUser.css';
-import { useParams ,useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 //models type
 import { userInterface } from '../../models/IUser';
 //function
@@ -76,33 +76,64 @@ const EditUser = () => {
     );
 
     const handleInputChange = (event: React.ChangeEvent<{ id?: string; value: any }>) => {
-        const name = event.target.id as keyof typeof dataget;
+        const name = event.target.id as keyof typeof user;
         const { value } = event.target;
-        setDataget({
-            ...dataget,
+        setUser({
+            ...user,
             [name]: value,
         });
     }
     const handleSubmit = () => {
-        let data = {
-            username: dataget.username,
-            password: dataget.password,
-            phone_number: dataget.phone_number,
-            address: dataget.address,
-            img: imageUrl,
-        }
         const edit_user = params.id;
         const token = localStorage.getItem('access_token')
-        updateUser(token, edit_user, data)
-            .then((response) => response.json())
-            .then((res) => {
-                console.log(res)
-                alert(res.msg)
-                localStorage.removeItem('edit_user')
-                navigate('/user-list')
-            }).catch((err) => {
-                console.log(err)
-            })
+        console.log(`Edit user`, user.confirmpassword)
+
+        if (user.confirmpassword !== undefined) {
+            if (user.password === user.confirmpassword) {
+                let data = {
+                    username: user.username,
+                    phone_number: user.phone_number,
+                    password: user.password,
+                    address: user.address,
+                    img: imageUrl,
+                }
+                updateUser(token, edit_user, data)
+                    .then((response) => response.json())
+                    .then((res) => {
+                        console.log(res)
+                        alert(res.msg)
+                        localStorage.removeItem('edit_user')
+                        navigate('/user-list')
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+
+            } else {
+                alert('Password and Confirm Password invalid!')
+            }
+
+
+        } else {
+            let data = {
+                username: user.username,
+                phone_number: user.phone_number,
+                address: user.address,
+                img: imageUrl,
+            }
+            updateUser(token, edit_user, data)
+                .then((response) => response.json())
+                .then((res) => {
+                    console.log(res)
+                    alert(res.msg)
+                    localStorage.removeItem('edit_user')
+                    navigate('/user-list')
+                }).catch((err) => {
+                    console.log(err)
+                })
+
+        }
+
+
 
     }
     console.log('edit_user', params)
@@ -119,6 +150,7 @@ const EditUser = () => {
             .then((res) => {
                 console.log(res)
                 setDataget(res)
+                setUser(res)
                 setImageUrl(res.img)
             }).catch((err) => {
                 console.log(err)
@@ -219,7 +251,7 @@ const EditUser = () => {
                             type="text"
                             name="confirmpassword"
                             id="confirmpassword"
-                            value="confirmpassword"
+                            value={dataget.confirmpassword}
                             onChange={handleInputChange}
 
                             placeholder="confirmpassword" />
