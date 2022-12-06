@@ -23,11 +23,16 @@
 }
 
 .button-cancel {
-    display: flex;
-
+    width: 90px;
+    background-color: #B2B2B2;
+    /* background-color: #635b5b; */
+    text-align: center;
+    color: white
 }
 
-.button-submit {
-    display: flex;
 
+.button-save {
+    width: 90px;
+    text-align: center;
+    color: white
 }
