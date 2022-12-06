@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './CreateUser.css';
+import './EditUser.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 //models type
@@ -168,8 +168,8 @@ const EditUser = () => {
     return (
         <div className='container'>
             <Row>
-                <Col style={{ marginLeft: "4%", marginTop: "5%" }} xs={4} sm={6} md={8} lg={10} xl={12}>
-                    <h3>Add User</h3>
+                <Col style={{ marginLeft: "4%", marginTop: "5%",fontSize: '30px', color: '#063970'}} xs={4} sm={6} md={8} lg={10} xl={12}>
+                    <h3>Edit User</h3>
                 </Col>
             </Row>
             <div className='container-from'>
@@ -261,22 +261,20 @@ const EditUser = () => {
                     </Form.Item>
                     <Form.Item>
                         <div className='button-size'>
-                            <div className='button-cancel'>
+
+                            <Button
+                                className='button-cancel'
+                                htmlType="submit"
+                                onClick={handleCancel}>
+                                cancel
+                            </Button>
                                 <Button
-                                    type="primary"
-                                    htmlType="submit"
-                                    onClick={handleCancel}>
-                                    cancel
-                                </Button>
-                            </div>
-                            <div className='button-submit'>
-                                <Button
+                                    className='button-save'
+                                    type='primary'
                                     onClick={handleSubmit}
-                                    type="primary"
                                     htmlType="submit">
-                                    Submit
+                                    Save
                                 </Button>
-                            </div>
                         </div>
 
                     </Form.Item>
